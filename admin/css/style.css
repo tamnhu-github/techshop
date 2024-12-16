@@ -1,0 +1,74 @@
+.headeradmin {
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+    }
+    .headeradmin h1 {
+    margin: 0;
+    font-size: 24px;
+    }
+    /* Navigation Menu Styles */
+    .menu {
+    background-color: #444;
+    padding: 10px 0;
+    }
+    .menu ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    }
+    .menu li {
+    margin: 0 10px;
+    }
+    .menu a {
+    color: #fff;
+    text-decoration: none;
+    padding: 5px 10px;
+    }
+    .menu a:hover {
+    background-color: #555;
+    }
+    /* Home Content Styles */
+    .frmtitle {
+    background-color: #f1f1f1;
+    padding: 10px;
+    text-align: center;
+    }
+    .frmtitle h1 {
+    margin: 0;
+    font-size: 20px;
+    }
+    .frmcontent {
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+    }
+    .row {
+    margin-bottom: 10px;
+    }
+    .mb10 {
+    margin-bottom: 10px;
+    }
+    input[type="text"],
+    input[type="submit"],
+    input[type="reset"],
+    input[type="button"] {
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    }
+    input[type="submit"],
+    input[type="reset"],
+    input[type="button"] {
+    background-color: #4CAF50;
+    color: #fff;
+    cursor: pointer;
+    }
+    input[type="submit"]:hover,
+    input[type="reset"]:hover,
+    input[type="button"]:hover {
+    background-color: #45a049;
+    }
