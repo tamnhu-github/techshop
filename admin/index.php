@@ -99,20 +99,36 @@
                 include "sanpham/list.php";
                 break;
             case 'suasp':
-                if(isset($_GET['maloai']) && ($_GET['maloai']) > 0) {
-                    $dm = loadOne_sanpham(($_GET['maloai']));
+                if(isset($_GET['masanpham']) && ($_GET['masanpham']) > 0) {
+                    $sanpham = loadOne_sanpham(($_GET['masanpham']));
                 }
+                $listdanhmuc = loadAll_danhmuc();
                 include "sanpham/update.php";
                 break;
             case 'updatesp':
                 //neu co nhan nut cap nhat
                 if(isset($_POST['capnhat']) && ($_POST['capnhat'])) {
-                    $maloai = $_POST['maloai'];
-                    $tenloai = $_POST['tenloai'];
-                    update_sanpham($maloai, $tenloai);
+                    $masanpham = $_POST['masanpham'];
+                    $tensanpham = $_POST['tensanpham'];
+                    $gia = $_POST['gia'];
+                    $mota = $_POST['mota'];
+                    $anh = $_FILES['anh']['name']; //lay ten anh
+                    $target_dir = "../upload/"; //thu muc chua anh
+                    if (!is_dir($target_dir)) {
+                        mkdir($target_dir, 0755, true);
+                    }
+                    $target_file = $target_dir . basename($_FILES["anh"]["name"]);
+                    if(move_uploaded_file($_FILES["anh"]["tmp_name"], $target_file)) {
+                        //echo "Thanh cong";
+                    }
+                    else {
+                        //echo "That bai";
+                    }
+                    update_sanpham($masanpham, $tensanpham, $gia, $mota, $anh);
                     $thongbao = "Cập nhật thành công!";
                 }
-                $listdanhmuc = loadAll_sanpham("", 0);
+                $listdanhmuc = loadAll_danhmuc();
+                $listsanpham = loadAll_sanpham("", 0);
                 include "sanpham/list.php";
                 break;
             default:

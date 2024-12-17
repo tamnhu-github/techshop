@@ -12,7 +12,7 @@
                     <?php
                         foreach ($listdanhmuc as $dm) {
                             extract($dm);
-                            echo '<option value="' . $maloai . '">' . $tenloai . '</option>';
+                            echo '<option value="' . $danhmuc['maloai'] . '">' . $tenloai . '</option>';
                         }
                     ?>
                 </select>

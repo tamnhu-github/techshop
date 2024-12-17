@@ -27,8 +27,24 @@
         return $sp;
     }
 
-    function update_sanpham($masanpham, $tensanpham) {
-        $sql = "update sanpham set tensanpham='".$tensanpham."'where masanpham=".$masanpham;
+    function update_sanpham($masanpham, $tensanpham, $gia, $mota, $anh) {
+        if($anh != null) {
+            // Cập nhật đầy đủ
+            $sql = "UPDATE sanpham 
+                    SET tensanpham = '".$tensanpham."', 
+                        gia = '".$gia."', 
+                        mota = '".$mota."', 
+                        anh = '".$anh."' 
+                    WHERE masanpham = ".$masanpham;
+        } else {
+            // Cập nhật trừ ảnh
+            $sql = "UPDATE sanpham 
+                    SET tensanpham = '".$tensanpham."', 
+                        gia = '".$gia."', 
+                        mota = '".$mota."' 
+                    WHERE masanpham = ".$masanpham;
+        }
+        
         pdo_execute($sql);
     }
 
