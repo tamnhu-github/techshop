@@ -1,9 +1,11 @@
 <!-- layout -->
 <?php
+    session_start();
     include "../model/pdo.php";
     include "../model/danhmuc.php";
     include "../model/sanpham.php";
     include "header.php";
+    include "../model/taikhoan.php";
 
     //controller
     if(isset($_GET['act'])) {
@@ -131,6 +133,41 @@
                 $listsanpham = loadAll_sanpham("", 0);
                 include "sanpham/list.php";
                 break;
+                //nhi làm tiếp
+            case 'dangky':
+                if(isset($_POST['dangky'])&&($_POST['dangky'])){
+                    $email = $_POST['email'];
+                    $user = $_POST['user'];
+                    $pass = $_POST['pass'];
+
+                    insert_taikhoan($email, $user, $pass);
+                    $thongbao = "Đã đăng ký thành công. Vui lòng đăng nhập để tiếp tục!";
+                }
+                include "../view/taikhoan/dangky.php";
+                break;
+                case 'dangnhap':
+                    if(isset($_POST['dangnhap'])&&($_POST['dangnhap'])){
+                        $user = $_POST['user'];
+                        $pass = $_POST['pass'];
+                        
+                        $checkuser = checkuser($user,$pass);
+                        if(is_array($checkuser)){
+                            $_SESSION['user'] = $checkuser;
+                            //$thongbao = "Bạn đã đăng nhậo thành công!";
+                            header('Location: ../view/boxright.php'); //chuyển qua 1 trang mới
+                        }else{
+                            $thongbao = "Tài khoản không tồn tại. Vui lòng kiểm tra lại hoặc đăng ký!";
+                        }
+                    }
+                include "../view/taikhoan/dangky.php";
+                break;
+            case 'gioithieu':
+                include "view/gioithieu.php";
+                break;
+            case 'lienhe':
+                include "view/lienhe.php";
+                break;               
+
             default:
                 include "home.php";
                 break;
