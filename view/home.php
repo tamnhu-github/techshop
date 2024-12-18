@@ -110,7 +110,7 @@
                     if(($i == 2) || ($i == 5) || ($i == 8)){
                         $mr = "";
                     }else{
-                        $mr = "mrmr";
+                        $mr = "mr";
                     }
                     echo '
                         <div class="boxsp '.$mr.'">
@@ -176,7 +176,7 @@
     <div class="boxtitle">DANH MỤC</div>
             <div class="boxcontent2 menudoc">
                 <ul>
-                    <li>
+                    <!-- <li>
                         <a href="#">Đồng hồ</a>
                     </li>
                     <li>
@@ -196,7 +196,18 @@
                     </li>
                     <li>
                         <a href="#">Ba lô</a>
-                    </li>
+                    </li> -->
+                    <?php 
+                        foreach ($dsdm as $dm) {
+                            extract($dm);
+                            $linkdm = "index.php?act=sanpham&iddm=".$maloai;
+                            echo '
+                                <li>
+                                    <a href="'.$linkdm.'">'.$tenloai.'</a>
+                                </li>
+                            ';
+                        }
+                    ?>
                 </ul>
             </div>
             <div class="boxfooter searchbox">
@@ -208,7 +219,7 @@
         <div class="row">
             <div class="boxtitle">TOP 10 YÊU THÍCH</div>
             <div class="row boxcontent">
-                <div class="row mb10 top10">
+                <!-- <div class="row mb10 top10">
                     <img src="view/images/anh1.jpg" alt="">
                     <a href="#">Hello everyone</a>
                 </div>
@@ -239,7 +250,22 @@
                 <div class="row mb10 top10">
                     <img src="view/images/anh1.jpg" alt="">
                     <a href="#">Hello everyone</a>
-                </div>
+                </div> -->
+
+                <?php 
+                    foreach ($dstop10 as $spsp) {
+                        extract($sp);
+                        $linksp = "index.php?act=sanphamct&idsp=".$masanpham;
+                        $anh = $img_path.$anh;
+                        echo '
+                            <div class="row mb10 top10">
+                                <img src="'.$anh.'" alt="Ảnh sản phẩm">
+                                <a href="'.$linksp.'">'.$tensanpham.'</a>
+                            </div>
+                        ';
+
+                    }
+                ?>
 
             </div>
         </div>

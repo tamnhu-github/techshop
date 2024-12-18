@@ -1,10 +1,15 @@
+
 <?php 
     include "model/pdo.php";
+    include "model/danhmuc.php";
     include "model/sanpham.php";
     include 'view/header.php';
     include 'global.php';
     
     $spnew = loadall_sanpham_home();
+    $dsdm = loadAll_danhmuc();
+    $dstop10 = loadall_sanpham_top10();
+
     if((isset($_GET['act']))&&($_GET['act']!="")){
         $act = $_GET['act'];
         switch ($act){
@@ -24,3 +29,4 @@
     include 'view/footer.php';
 
 ?>
+

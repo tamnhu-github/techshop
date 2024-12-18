@@ -8,6 +8,11 @@
         $sql = "delete from sanpham where masanpham = ".$masanpham;
         pdo_execute($sql);
     }
+    function loadall_sanpham_top10(){
+        $sql = "SELECT * FROM sanpham WHERE 1 ORDER BY luotxem DESC LIMIT 0,10";
+        $listsanpham = pdo_query($sql);
+        return $listsanpham;
+    }
     function loadall_sanpham_home(){
         $sql = "SELECT * FROM sanpham WHERE 1 ORDER BY masanpham DESC LIMIT 0,9";
         $listsanpham = pdo_query($sql);
