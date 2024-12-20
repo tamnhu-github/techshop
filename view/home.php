@@ -1,173 +1,67 @@
-<div class="row mb">
-    <div class="boxtrai mr">
-        <div class="row">
-            <div class="banner mb">
-                <img src="images/banner.jpg" alt="">
-            </div>
-        </div>
-        <div class="row">
-            <div class="boxsp mr">
-               <div class="row img"><img src="images/anh1.jpg" alt=""></div>
-                <p>$30</p>
-                <a href="#">Đồng hồ</a>
-            </div>
-            <div class="boxsp mr">
-               <div class="row img"><img src="images/anh1.jpg" alt=""></div>
-                <p>$30</p>
-                <a href="#">Đồng hồ</a>
-            </div>
-            <div class="boxsp mr">
-               <div class="row img"><img src="images/anh1.jpg" alt=""></div>
-                <p>$30</p>
-                <a href="#">Đồng hồ</a>
-            </div>
-            <div class="boxsp mr">
-               <div class="row img"><img src="images/anh1.jpg" alt=""></div>
-                <p>$30</p>
-                <a href="#">Đồng hồ</a>
-            </div>
-            <div class="boxsp mr">
-               <div class="row img"><img src="images/anh1.jpg" alt=""></div>
-                <p>$30</p>
-                <a href="#">Đồng hồ</a>
-            </div>
-            <div class="boxsp mr">
-               <div class="row img"><img src="images/anh1.jpg" alt=""></div>
-                <p>$30</p>
-                <a href="#">Đồng hồ</a>
-            </div>
-            <div class="boxsp mr">
-               <div class="row img"><img src="images/anh1.jpg" alt=""></div>
-                <p>$30</p>
-                <a href="#">Đồng hồ</a>
-            </div>
-            <div class="boxsp mr">
-               <div class="row img"><img src="images/anh1.jpg" alt=""></div>
-                <p>$30</p>
-                <a href="#">Đồng hồ</a>
-            </div>
-            <div class="boxsp mr">
-               <div class="row img"><img src="images/anh1.jpg" alt=""></div>
-                <p>$30</p>
-                <a href="#">Đồng hồ</a>
-            </div>
-            <div class="boxsp mr">
-               <div class="row img"><img src="images/anh1.jpg" alt=""></div>
-                <p>$30</p>
-                <a href="#">Đồng hồ</a>
-            </div>
-            <div class="boxsp mr">
-               <div class="row img"><img src="images/anh1.jpg" alt=""></div>
-                <p>$30</p>
-                <a href="#">Đồng hồ</a>
-            </div>
-            <div class="boxsp mr">
-               <div class="row img"><img src="images/anh1.jpg" alt=""></div>
-                <p>$30</p>
-                <a href="#">Đồng hồ</a>
-            </div>
-        </div>
-    </div>
-    <div class="boxphai">
-        <div class="row mb">
-            <div class="boxtitle">TÀI KHOẢN</div>
-            <div class="boxcontent formtaikhoan">
-                <form action="#" method="post">
-                    <div class="row mb10">
-                        Tên đăng nhập<br>
-                        <input type="text" name="user" id="">
-                    </div>
-                    <div class="row mb10">
-                        Mật khẩu<br>
-                        <input type="password" name="pass" id="">
-                    </div>
-                    <div class="row mb10">
-                        <input type="checkbox" name="pass" id="">Ghi nhớ tài khoản?
-                    </div>
-                    <div class="row mb10">
-                        <input type="submit" value="Đăng nhập">
-                    </div>
-                </form>
-                <li>
-                    <a href="#">Quên mật khẩu</a>
-                </li>
-                <li>
-                    <a href="#">Đăng ký thành viên</a>
-                </li>
-            </div>
-        </div>
-        <div class="row mb">
-            <div class="boxtitle">DANH MỤC</div>
-            <div class="boxcontent2 menudoc">
-                <ul>
-                    <li>
-                        <a href="#">Đồng hồ</a>
-                    </li>
-                    <li>
-                        <a href="#">Laptop</a>
-                    </li>
-                    <li>
-                        <a href="#">Điện thoại</a>
-                    </li>
-                    <li>
-                        <a href="#">Ba lô</a>
-                    </li>
-                    <li>
-                        <a href="#">Laptop</a>
-                    </li>
-                    <li>
-                        <a href="#">Điện thoại</a>
-                    </li>
-                    <li>
-                        <a href="#">Ba lô</a>
-                    </li>
-                </ul>
-            </div>
-            <div class="boxfooter searchbox">
-                <form action="#" method="post">
-                    <input type="text" name="" id="">
-                </form>
-            </div>
-        </div>
-        <div class="row">
-            <div class="boxtitle">TOP 10 YÊU THÍCH</div>
-            <div class="row boxcontent">
-                <div class="row mb10 top10">
-                    <img src="images/anh1.jpg" alt="">
-                    <a href="#">Hello everyone</a>
-                </div>
-                <div class="row mb10 top10">
-                    <img src="images/anh1.jpg" alt="">
-                    <a href="#">Hello everyone</a>
-                </div>
-                <div class="row mb10 top10">
-                    <img src="images/anh1.jpg" alt="">
-                    <a href="#">Hello everyone</a>
-                </div>
-                <div class="row mb10 top10">
-                    <img src="images/anh1.jpg" alt="">
-                    <a href="#">Hello everyone</a>
-                </div>
-                <div class="row mb10 top10">
-                    <img src="images/anh1.jpg" alt="">
-                    <a href="#">Hello everyone</a>
-                </div>
-                <div class="row mb10 top10">
-                    <img src="images/anh1.jpg" alt="">
-                    <a href="#">Hello everyone</a>
-                </div>
-                <div class="row mb10 top10">
-                    <img src="images/anh1.jpg" alt="">
-                    <a href="#">Hello everyone</a>
-                </div>
-                <div class="row mb10 top10">
-                    <img src="images/anh1.jpg" alt="">
-                    <a href="#">Hello everyone</a>
-                </div>
+ <!-- Main Content -->
+ <div class="container my-4">
+     <div class="row">
+         <!-- Main Product Grid -->
+         <div class="col-lg-9">
+             <!-- Banner -->
+             <div class="mb-4">
+                 <div class="slideshow-container">
 
-            </div>
-        </div>
+                     <div class="mySlides fade">
+                         <!-- <div class="numbertext">1 / 3</div> -->
+                         <img src="view/images/banner11.jpg" style="width:100%">
+                         <!-- <div class="text">Caption Text</div> -->
+                     </div>
 
-    </div>
-</div>
+                     <div class="mySlides fade">
+                         <!-- <div class="numbertext">2 / 3</div> -->
+                         <img src="view/images/banner10.jpg" style="width:100%">
+                         <!-- <div class="text">Caption Two</div> -->
+                     </div>
 
+                     <div class="mySlides fade">
+                         <!-- <div class="numbertext">3 / 3</div> -->
+                         <img src="view/images/banner2.jpg" style="width:100%">
+                         <!-- <div class="text">Caption Three</div> -->
+                     </div>
+
+                 </div>
+                 <br>
+
+                 <div style="text-align:center">
+                     <span class="dot"></span>
+                     <span class="dot"></span>
+                     <span class="dot"></span>
+                 </div>
+                 <br>
+             </div>
+
+             <!-- Products Grid -->
+             <div class="row row-cols-1 row-cols-md-3 g-4">
+                 <?php
+                    foreach ($sanphamnew as $sp) {
+                        extract($sp);
+                        $anh = $img_path . $anh;
+                        $linkchitietsanpham = "index.php?act=chitietsanpham&masanpham=".$masanpham;
+                        $gia_dinh_dang = number_format($gia, 0, ',', '.') . ' VND';
+                        echo '<div class="col">
+                                <a href="'.$linkchitietsanpham.'" class="text-decoration-none text-dark">
+                                    <div class="card h-100 shadow-sm transition-card" style="min-height: 450px;">
+                                        <img src="' . $anh . '" class="card-img-top" alt="">
+                                        <div class="card-body">
+                                            <h5 class="card-title">' . $gia_dinh_dang . '</h5>
+                                            <p class="card-text">' . $tensanpham . '</p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>';
+
+                    }
+                ?>
+             </div>
+         </div>
+         <?php
+            include "view/rightbox.php";
+         ?>
+     </div>
+ </div>
