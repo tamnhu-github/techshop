@@ -19,11 +19,11 @@
                     <input type="checkbox" class="form-check-input">
                     <label class="form-check-label">Ghi nhớ tài khoản?</label>
                 </div>
-                <button type="submit" class="btn btn-primary">Đăng nhập</button>
+                <button type="submit" class="btn btn-primary form-control">Đăng nhập</button>
             </form>
             <div class="mt-3">
                 <a href="#" class="d-block text-decoration-none">Quên mật khẩu</a>
-                <a href="#" class="d-block text-decoration-none">Đăng ký thành viên</a>
+                <a href="index.php?act=dangky" class="d-block text-decoration-none">Đăng ký thành viên</a>
             </div>
         </div>
     </div>
@@ -45,8 +45,11 @@
                         ?>
 
             </ul>
-            <form class="mt-3">
-                <input type="text" class="form-control" placeholder="Tìm kiếm...">
+
+            <!-- search box -->
+            <form class="mt-3 d-flex" action="index.php?act=dssp" method="post">
+                <input type="text" class="form-control me-2" placeholder="Tìm kiếm..." name="key">
+                <input type="submit" class="btn btn-primary" value="Tìm" name="search"></input>
             </form>
         </div>
     </div>

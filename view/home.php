@@ -49,8 +49,8 @@
                                     <div class="card h-100 shadow-sm transition-card" style="min-height: 450px;">
                                         <img src="' . $anh . '" class="card-img-top" alt="">
                                         <div class="card-body">
-                                            <h5 class="card-title">' . $gia_dinh_dang . '</h5>
-                                            <p class="card-text">' . $tensanpham . '</p>
+                                            <h5 class="card-title">' . $tensanpham. '</h5>
+                                            <p class="card-text">' . $gia_dinh_dang . '</p>
                                         </div>
                                     </div>
                                 </a>
