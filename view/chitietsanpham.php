@@ -44,22 +44,18 @@
             </div>
 
             <!-- Box: Bình Luận -->
-            <div class="mb-4">
-                <h4 class="border-bottom pb-2 mb-3">BÌNH LUẬN</h4>
-                <div class="card">
-                    <div class="card-body">
-                        <p>Phần bình luận sẽ hiển thị ở đây...</p>
-                        <!-- Mẫu form bình luận -->
-                        <form>
-                            <div class="mb-3">
-                                <label for="comment" class="form-label">Thêm bình luận</label>
-                                <textarea class="form-control" id="comment" rows="3"></textarea>
-                            </div>
-                            <button type="submit" class="btn btn-primary">Gửi</button>
-                        </form>
-                    </div>
-                </div>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+            <script>
+            $(document).ready(function() {
+                $("#binhluan").load("view/binhluan/binhluanform.php", {
+                    masanpham: <?= $masanpham ?>
+                });
+            });
+            </script>
+            <div class="card mb-4" id="binhluan">
+
             </div>
+
 
             <!-- Box: Sản Phẩm Cùng Loại -->
             <div class="mb-4">

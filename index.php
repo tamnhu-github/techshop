@@ -1,4 +1,5 @@
 <?php
+    session_start();  //bat dau session
     include "view/header.php";
     include "model/pdo.php";
     include "model/sanpham.php";
@@ -28,6 +29,90 @@
                     $thongbao = "Đã đăng ký thành công. Hãy đăng nhập để bình luận hoặc mua sắm nhé!";
                 }
                 include "view/taikhoan/dangky.php";
+                break;
+            case 'dangnhap':
+                if(isset($_POST['dangnhap']) && ($_POST['dangnhap'])) {
+                    $tennguoidung = $_POST['tennguoidung'];
+                    $matkhau = $_POST['matkhau'];
+                    $checkuser = ktDangNhap($tennguoidung, $matkhau);
+                    if(is_array($checkuser)) {
+                        $_SESSION['user'] = $checkuser;
+                        //$thongbao = "Đăng nhập thành công!";
+                        header('Location: index.php');
+                        
+                    }
+                    else {
+                        $_SESSION['thongbao'] = "Thông tin đăng nhập sai!";
+                        header('Location: index.php');
+                    }
+                    
+                }
+                break;
+            case 'edit_taikhoan':
+                if(isset($_POST['capnhat']) && ($_POST['capnhat'])) {
+                    $id = $_POST['id'];
+                    $matkhau = $_POST['matkhau'];
+                    $tennguoidung = $_POST['tennguoidung'];
+                    $email = $_POST['email'];
+                    $sodienthoai = $_POST['sodienthoai'];
+                    $diachi = $_POST['diachi'];
+                    update_taikhoan($id, $tennguoidung, $email, $sodienthoai, $diachi);
+                    $thongbao = "Cập nhật thành công!";
+                    //cap nhat lai session
+                    $_SESSION['user'] = ktDangNhap($tennguoidung, $matkhau);
+                    header('Location: index.php?act=edit_taikhoan');
+                    
+                }
+                include "view/taikhoan/edit_taikhoan.php";
+                break;
+            case 'doimatkhau':
+                if(isset($_POST['capnhat']) && ($_POST['capnhat'])) {
+                    $id = $_POST['id'];
+                    $tennguoidung = $_POST['tennguoidung'];
+                    $mkhientai = $_POST['mkhientai'];
+                    $mkmoi = $_POST['mkmoi'];
+                    $mkxacnhan = $_POST['mkxacnhan'];
+                    if($mkmoi != $mkxacnhan) {
+                        $thongbao = "Mật khẩu mới và mật khẩu xác nhận không khớp!";
+                    }
+                    else if ($mkhientai == $mkmoi) {
+                        $thongbao = "Mật khẩu cũ và mật khẩu mới trùng nhau!";
+                    }
+                    else {
+                        $user = getOne($id);
+                        // Kiểm tra xem mật khẩu cũ có đúng không
+                        if ($user && $user['matkhau'] == $mkhientai) {
+                            doiMatKhau($id, $mkmoi);
+                            $thongbao = "Mật khẩu đã được cập nhật thành công!";
+                            $_SESSION['user'] = ktDangNhap($tennguoidung, $mkmoi);
+                            //header('Location: index.php?act=doimatkhau');
+                        }
+                        else {
+                            $thongbao = "Mật khẩu cũ không đúng!";
+                        }
+
+                    }
+                    
+                }
+                include "view/taikhoan/doimatkhau.php";
+                break;
+            case 'quenmatkhau':
+                    if (isset($_POST['gui']) && ($_POST['gui'])) {
+                        $email = $_POST['email'];
+                        $user = getOneByEmail($email);
+                        if (is_array($user)) {
+                            // Trường hợp email tồn tại
+                            $thongbao = "Mật khẩu của bạn là: " . $user['matkhau'];
+                        } else {
+                            // Trường hợp email không tồn tại
+                            $thongbao = "Email không đúng hoặc không tồn tại trong hệ thống!";
+                        }
+                    }
+                    include "view/taikhoan/quenmatkhau.php";
+                    break;
+            case 'logout':
+                session_unset();
+                header('Location: index.php');
                 break;
             case 'chitietsanpham':
                 if(isset($_GET['masanpham']) && ($_GET['masanpham']) > 0 ) {

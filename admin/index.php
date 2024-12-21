@@ -3,6 +3,7 @@
     include "../model/pdo.php";
     include "../model/danhmuc.php";
     include "../model/sanpham.php";
+    include "../model/taikhoan.php";
     include "header.php";
 
     //controller
@@ -130,6 +131,46 @@
                 $listdanhmuc = loadAll_danhmuc();
                 $listsanpham = loadAll_sanpham("", 0);
                 include "sanpham/list.php";
+                break;
+
+            //khachhang
+            case 'dskh':
+                $listkhachhang = loadAll_khachhang();
+                include "taikhoan/list.php";
+                break;
+            case 'suakh':
+                    if(isset($_GET['id']) && ($_GET['id']) > 0) {
+                        $tk = getOne(($_GET['id']));
+                    }
+                    include "taikhoan/update.php";
+                    break;
+            case 'updatekh':
+                //neu co nhan nut cap nhat
+                if(isset($_POST['capnhat']) && ($_POST['capnhat'])) {
+                    $id = $_POST['id'];
+                    $tennguoidung = $_POST['tennguoidung'];
+                    $email = $_POST['email'];
+                    $diachi = $_POST['diachi'];
+                    $vaitro = $_POST['vaitro'];
+                    $sodienthoai = $_POST['sodienthoai'];
+                    update_taikhoanAdmin($id, $tennguoidung, $email, $sodienthoai, $diachi, $vaitro);
+                    $success = "Cập nhật thành công!";
+                }
+                $listkhachhang = loadAll_khachhang();
+                include "taikhoan/list.php";
+                break;
+                    
+            case 'xoakh':
+                if(isset($_GET['id']) && ($_GET['id']) > 0) {
+                    if(isset($_GET['vaitro']) && ($_GET['vaitro']) == 0){
+                        delete_khachhang(($_GET['id']));
+                    }
+                    else {
+                        $thongbao = "Không thể xóa người dùng này";
+                    } 
+                }
+                $listkhachhang = loadAll_khachhang();
+                include "taikhoan/list.php";
                 break;
             default:
                 include "home.php";

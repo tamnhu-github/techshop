@@ -56,7 +56,7 @@
                         $suasp = "index.php?act=suasp&masanpham=".$masanpham;
                         $xoasp = "index.php?act=xoasp&masanpham=".$masanpham;
                         $anhPath = "../upload/".$anh;
-                        $mota = strlen($mota) > 70 ? substr($mota, 0, 70) . '...' : $mota;
+                        $mota = strlen($mota) > 50 ? substr($mota, 0, 50) . '...' : $mota;
                             if(is_file($anhPath)) {
                             $anh = "<img src='" . $anhPath . "' class='img-fluid mw-100' style='max-height:100px;'>";
                             }
