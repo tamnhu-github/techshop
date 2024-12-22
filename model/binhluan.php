@@ -8,4 +8,13 @@
         $listbinhluan = pdo_query($sql);
         return $listbinhluan;
     }
+    function loadAll() {
+        $sql = "select * from binhluan order by idmsg desc";
+        $listbinhluan = pdo_query($sql);
+        return $listbinhluan;
+    }
+    function delete_binhluan($idmsg) {
+        $sql = "delete from binhluan where idmsg = ".$idmsg;
+        pdo_execute($sql);
+    }
 ?>

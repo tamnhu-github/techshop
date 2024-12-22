@@ -43,23 +43,19 @@
                 </div>
             </div>
 
-            <!-- Box: Bình Luận -->
-            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-            <script>
-            $(document).ready(function() {
-                $("#binhluan").load("view/binhluan/binhluanform.php", {
-                    masanpham: <?= $masanpham ?>
-                });
-            });
-            </script>
-            <div class="card mb-4" id="binhluan">
-
+            <!-- Box: Bình Luận-->
+            <div class="card-header">
+                <h4 class="pb-2 mb-3 border-bottom">BÌNH LUẬN</h4>
+            </div>
+            <div class="comment-box mb-4">
+                <iframe src="view/binhluan/binhluanform.php?masanpham=<?= $masanpham ?>" frameborder="0" width="100%"
+                    height="200px"></iframe>
             </div>
 
 
             <!-- Box: Sản Phẩm Cùng Loại -->
             <div class="mb-4">
-                <h4 class="border-bottom pb-2 mb-3">SẢN PHẨM CÙNG LOẠI</h4>
+                <h4 class="border-bottom pb-2 mb-3 mt-5">SẢN PHẨM CÙNG LOẠI</h4>
                 <div class="list-group">
                     <?php
                         foreach ($listcungloai as $sp) {

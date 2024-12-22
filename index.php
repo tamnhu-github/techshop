@@ -6,6 +6,11 @@
     include "model/danhmuc.php";
     include "model/taikhoan.php";
     include "global.php";
+
+    //kiem tra session mycart
+    if(!isset($_SESSION['mycart'])) {
+        $_SESSION['mycart'] = [];
+    }
     $sanphamnew = loadAll_sanpham_home();
     $listdanhmuc_home = loadAll_danhmuc();
     $listtop10 = loadAll_sanpham_top10();
@@ -114,6 +119,69 @@
                 session_unset();
                 header('Location: index.php');
                 break;
+
+            //gio hang
+            case 'addtocart':
+                //them thong tin sp tu form addtocart den session
+                if(isset($_POST['addtocart']) && ($_POST['addtocart'])) {
+                    $masanpham = $_POST['masanpham'];
+                    $tensanpham = $_POST['tensanpham'];
+                    $anh = $_POST['anh'];
+                    $gia = $_POST['gia'];
+                    $soluong = 1;
+
+                    //cờ để kiểm tra sản phẩm tồn tại
+                    $found = false;
+                    $thanhtien = $gia * $soluong;
+                    foreach ($_SESSION['mycart'] as $key => $cartItem) {
+                        if ($cartItem[0] == $masanpham) {
+                            // Nếu sản phẩm đã có, tăng số lượng
+                            $_SESSION['mycart'][$key][4] += $soluong; // Tăng số lượng
+                            $_SESSION['mycart'][$key][5] = $_SESSION['mycart'][$key][3] * $_SESSION['mycart'][$key][4]; // Cập nhật thành tiền
+                            $found = true;
+                            break;
+                        }
+                    }
+                    if (!$found) {
+                        // Nếu sản phẩm chưa tồn tại, thêm sản phẩm mới vào giỏ hàng
+                        $thanhtien = $gia * $soluong;
+                        $listsanphamadd = [$masanpham, $tensanpham, $anh, $gia, $soluong, $thanhtien];
+                        $_SESSION['mycart'][] = $listsanphamadd;
+                    }
+                }
+                header('Location: index.php?act=viewcart');
+                exit();
+                break;
+                case 'xoaspcart':
+                    if (isset($_GET['masanpham'])) {
+                        $masanpham = $_GET['masanpham'];
+                        // Duyệt qua giỏ hàng để tìm sản phẩm cần xóa
+                        foreach ($_SESSION['mycart'] as $key => $cartItem) {
+                            if ($cartItem[0] == $masanpham) {
+                                // Xóa sản phẩm khỏi giỏ hàng
+                                unset($_SESSION['mycart'][$key]);
+                                // Tái lập lại chỉ mục mảng sau khi xóa phần tử
+                                //array_values() sẽ tái lập lại chỉ mục mảng giỏ hàng, bắt đầu lại từ chỉ mục 0, 1, 2, ... mà không có chỉ mục bị bỏ trống.
+                                $_SESSION['mycart'] = array_values($_SESSION['mycart']);
+                                break;
+                            }
+                        }
+                    }
+                    else {
+                        // Xóa tất cả sản phẩm trong giỏ hàng nếu không có mã sản phẩm
+                        $_SESSION['mycart'] = [];
+                    }
+                
+                    header('Location: index.php?act=viewcart');
+                    exit();
+                    break;
+                
+            case 'viewcart':
+                include "view/cart/viewcart.php";
+                break;
+            case 'dathang':
+                include "view/cart/bill.php";
+                break;
             case 'chitietsanpham':
                 if(isset($_GET['masanpham']) && ($_GET['masanpham']) > 0 ) {
                     $masanpham = $_GET['masanpham'];
@@ -124,7 +192,7 @@
                 else {
                     include "view/home.php";
                 }
-                
+             
                 break;
                  
             //load danh sách sản phẩm theo danh mục

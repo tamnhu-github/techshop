@@ -9,48 +9,48 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="view/css/style.css">
 </head>
+
 <?php
     include "../../model/pdo.php";
     include "../../model/binhluan.php";
+    include "../../model/taikhoan.php";
     session_start();
     if (isset($_SESSION['user']['id'])) {
         $iduser = $_SESSION['user']['id'];
     }
     $masanpham = $_REQUEST['masanpham'];
     $listbinhluan = loadAll_binhluan($masanpham);
+    $listkhachhang = loadAll_khachhang();
 ?>
 
 <body>
-    <div class="card-header">
-        <h4 class="mb-0">BÌNH LUẬN</h4>
-    </div>
+
     <div class="card-body">
         <div class="card-body">
-            <table class="table table-bordered">
-                <thead>
-                    <tr>
-                        <th>Người dùng</th>
-                        <th>Nội dung</th>
-                        <th>Thời gian bình luận</th>
-                    </tr>
-                </thead>
+            <table class="table">
                 <tbody>
                     <?php
-            foreach ($listbinhluan as $bl) {
-                extract($bl);
-                echo '
-                <tr>
-                    <td>' . htmlspecialchars($iduser) . '</td>
-                    <td>' . nl2br(htmlspecialchars($noidung)) . '</td>
-                    <td>' . htmlspecialchars($ngaybinhluan) . '</td>
-                </tr>';
-            }
-            ?>
+                        foreach ($listbinhluan as $bl) {
+                            extract($bl);
+                            foreach ($listkhachhang as $kh) {
+                                extract($kh);
+                                if($iduser == $kh['id']) {
+                                    $tennguoibinhluan = $kh['tennguoidung'];
+                                }
+                            }  
+                            echo '
+                            <tr>
+                                <td class="col-3">' . htmlspecialchars($tennguoibinhluan) . '</td>
+                                <td class="col-4">' . nl2br(htmlspecialchars($noidung)) . '</td>
+                                <td>' . htmlspecialchars($ngaybinhluan) . '</td>
+                            </tr>';
+                        }
+                    ?>
                 </tbody>
             </table>
         </div>
 
-        <!-- search box -->
+        <!-- message box -->
         <form class="mt-3 d-flex" action="<?=$_SERVER['PHP_SELF'];?>" method="post">
             <input type="hidden" name="masanpham" value="<?=$masanpham?>">
             <input type="text" class="form-control me-2" placeholder="Hãy viết gì đó về sản phẩm này..." name="noidung">

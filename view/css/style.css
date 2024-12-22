@@ -173,5 +173,83 @@ img {vertical-align: middle;}
         color: #721c24 !important;    
         border-color: #f5c6cb !important; 
     }
+    .sticky-header {
+        position: sticky;
+        top: 0;
+        background-color: white;
+        z-index: 1000;
+        padding: 10px;
+        border-bottom: 1px solid #dee2e6;
+    }
+    
+    .card-body {
+        max-height: 500px;
+        overflow-y: auto;
+    }
+    
+    .table {
+        margin-bottom: 0;
+    }
+    /* Định dạng nút xóa toàn bộ giỏ hàng */
+a.btn.btn-warning.btn-sm {
+    display: inline-block;
+    padding: 12px 25px; 
+    font-size: 16px;
+    font-weight: bold; 
+    text-align: center; 
+    text-decoration: none; 
+    background-color: #ffc107; 
+    color: black; 
+    border: 2px solid #ffc107; 
+    border-radius: 30px; 
+    transition: all 0.3s ease; 
+}
+
+
+a.btn.btn-warning.btn-sm:hover {
+    background-color: #e0a800; 
+    border-color: #d39e00;
+    transform: translateY(-4px); 
+}
+
+a.btn.btn-warning.btn-sm:active {
+    background-color: #d39e00; 
+    border-color: #c69500; 
+    transform: translateY(1px); 
+}
+
+@media (max-width: 576px) {
+    a.btn.btn-warning.btn-sm {
+        font-size: 14px; 
+        padding: 10px 20px; 
+    }
+}
+.d-flex {
+    display: flex;
+   
+}
+
+.action-buttons {
+    display: flex; /* Sử dụng flexbox cho các nút */
+    gap: 10px; /* Khoảng cách giữa các nút */
+}
+
+.btn {
+    white-space: nowrap; /* Đảm bảo nút không bị gãy dòng */
+}
+.card-header .form-check-label {
+    font-size: 18px; /* Tăng kích thước chữ lên một chút */
+    margin-left: 10px; /* Khoảng cách giữa radio button và chữ */
+}
+
+
+
+
+
+    
+
+
+
+    
     
     

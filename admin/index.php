@@ -4,6 +4,7 @@
     include "../model/danhmuc.php";
     include "../model/sanpham.php";
     include "../model/taikhoan.php";
+    include "../model/binhluan.php";
     include "header.php";
 
     //controller
@@ -171,6 +172,24 @@
                 }
                 $listkhachhang = loadAll_khachhang();
                 include "taikhoan/list.php";
+                break;
+            
+            //binhluan
+            case 'dsbl':
+                $listkhachhang = loadAll_khachhang();
+                $listsanpham = loadAll_sanpham("", 0);
+                $listbinhluan = loadAll();
+                include "binhluan/list.php";
+                break;
+
+            case 'xoabl':
+                if(isset($_GET['idmsg']) && ($_GET['idmsg']) > 0) {
+                    delete_binhluan(($_GET['idmsg']));
+                }
+                $listbinhluan = loadAll();
+                $listkhachhang = loadAll_khachhang();
+                $listsanpham = loadAll_sanpham("", 0);
+                include "binhluan/list.php";
                 break;
             default:
                 include "home.php";
