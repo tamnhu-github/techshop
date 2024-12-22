@@ -1,5 +1,85 @@
 
 * {box-sizing:border-box}
+* {box-sizing:border-box}
+    .headeradmin {
+        background-color: #333;
+        color: #fff;
+        padding: 10px;
+        text-align: center;
+    }
+    .headeradmin h1 {
+        margin: 0;
+        font-size: 24px;
+    }
+    /* Navigation Menu Styles */
+    .menu {
+        background-color: #444;
+        padding: 10px 0;
+    }
+    .menu ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+    }
+    .menu li {
+        margin: 0 10px;
+    }
+    .menu a {
+        color: #fff;
+        text-decoration: none;
+        padding: 5px 10px;
+    }
+    .menu a:hover {
+        background-color: #555;
+    }
+    /* Home Content Styles */
+    .frmtitle {
+        background-color: #f1f1f1;
+        padding: 10px;
+        text-align: center;
+    }
+    .frmtitle h1 {
+        margin: 0;
+        font-size: 20px;
+    }
+    .frmcontent {
+        padding: 20px;
+        max-width: 800px;
+        margin: 0 auto;
+    }
+    .row {
+        margin-bottom: 10px;
+    }
+    .mb10 {
+        margin-bottom: 10px;
+    }
+    input[type="text"],
+    input[type="submit"],
+    input[type="reset"],
+    input[type="button"] {
+        padding: 5px 10px;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+    }
+    input[type="submit"],
+    input[type="reset"],
+    input[type="button"] {
+        background-color: #4CAF50;
+        color: #fff;
+        cursor: pointer;
+    }
+    input[type="submit"]:hover,
+    input[type="reset"]:hover,
+    input[type="button"]:hover {
+        background-color: #45a049;
+    }
+
+
+
+    .mySlides {display: none;}
+img {vertical-align: middle;}
 
 /* Slideshow container */
 .slideshow-container {
@@ -62,7 +142,9 @@
 
 /* The dots/bullets/indicators */
 .dot {
+
   cursor: pointer;
+
   height: 15px;
   width: 15px;
   margin: 0 2px;
@@ -72,7 +154,8 @@
   transition: background-color 0.6s ease;
 }
 
-.active, .dot:hover {
+.active {
+
   background-color: #717171;
 }
 
@@ -83,6 +166,7 @@
 }
 
 @keyframes fade {
+
   from {opacity: .4}
   to {opacity: 1}
 }
@@ -161,3 +245,128 @@
     input[type="button"]:hover {
     background-color: #45a049;
     }
+
+        from {opacity: .4} 
+        to {opacity: 1}
+    .transition-card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .transition-card:hover {
+        transform: translateY(-10px); 
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); 
+    }
+    .custom-margin {
+        margin-left: 80px;
+        margin-top: 10px;
+    }
+    .alert {
+        border-radius: 10px;
+        padding: 15px;
+        font-size: 16px;
+        background-color: #f0f8ff;
+        color: #0056b3;
+        border: 1px solid #bee5eb;
+        margin-top: 20px;
+    }
+    
+    .alert-info {
+        background-color: #d1ecf1;
+        border-color: #b8daff;
+    }
+    
+    .alert .btn-close {
+        opacity: 1;
+        background-color: transparent;
+        border: none;
+        color: #0056b3;
+    }
+    
+    .alert .btn-close:hover {
+        color: #004085;
+    }
+    .alert-danger {
+        background-color: #f8d7da !important; 
+        color: #721c24 !important;    
+        border-color: #f5c6cb !important; 
+    }
+    .sticky-header {
+        position: sticky;
+        top: 0;
+        background-color: white;
+        z-index: 1000;
+        padding: 10px;
+        border-bottom: 1px solid #dee2e6;
+    }
+    
+    .card-body {
+        max-height: 500px;
+        overflow-y: auto;
+    }
+    
+    .table {
+        margin-bottom: 0;
+    }
+    /* Định dạng nút xóa toàn bộ giỏ hàng */
+a.btn.btn-warning.btn-sm {
+    display: inline-block;
+    padding: 12px 25px; 
+    font-size: 16px;
+    font-weight: bold; 
+    text-align: center; 
+    text-decoration: none; 
+    background-color: #ffc107; 
+    color: black; 
+    border: 2px solid #ffc107; 
+    border-radius: 30px; 
+    transition: all 0.3s ease; 
+}
+
+
+a.btn.btn-warning.btn-sm:hover {
+    background-color: #e0a800; 
+    border-color: #d39e00;
+    transform: translateY(-4px); 
+}
+
+a.btn.btn-warning.btn-sm:active {
+    background-color: #d39e00; 
+    border-color: #c69500; 
+    transform: translateY(1px); 
+}
+
+@media (max-width: 576px) {
+    a.btn.btn-warning.btn-sm {
+        font-size: 14px; 
+        padding: 10px 20px; 
+    }
+}
+.d-flex {
+    display: flex;
+   
+}
+
+.action-buttons {
+    display: flex; /* Sử dụng flexbox cho các nút */
+    gap: 10px; /* Khoảng cách giữa các nút */
+}
+
+.btn {
+    white-space: nowrap; /* Đảm bảo nút không bị gãy dòng */
+}
+.card-header .form-check-label {
+    font-size: 18px; /* Tăng kích thước chữ lên một chút */
+    margin-left: 10px; /* Khoảng cách giữa radio button và chữ */
+}
+
+
+
+
+
+    
+
+
+
+    
+    
+    

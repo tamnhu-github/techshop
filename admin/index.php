@@ -4,6 +4,8 @@
     include "../model/pdo.php";
     include "../model/danhmuc.php";
     include "../model/sanpham.php";
+    include "../model/taikhoan.php";
+    include "../model/binhluan.php";
     include "header.php";
     include "../model/taikhoan.php";
 
@@ -133,7 +135,6 @@
                 $listsanpham = loadAll_sanpham("", 0);
                 include "sanpham/list.php";
                 break;
-                //nhi làm tiếp
             case 'dangky':
                 if(isset($_POST['dangky'])&&($_POST['dangky'])){
                     $email = $_POST['email'];
@@ -168,6 +169,64 @@
                 include "view/lienhe.php";
                 break;               
 
+
+            //khachhang
+            case 'dskh':
+                $listkhachhang = loadAll_khachhang();
+                include "taikhoan/list.php";
+                break;
+            case 'suakh':
+                    if(isset($_GET['id']) && ($_GET['id']) > 0) {
+                        $tk = getOne(($_GET['id']));
+                    }
+                    include "taikhoan/update.php";
+                    break;
+            case 'updatekh':
+                //neu co nhan nut cap nhat
+                if(isset($_POST['capnhat']) && ($_POST['capnhat'])) {
+                    $id = $_POST['id'];
+                    $tennguoidung = $_POST['tennguoidung'];
+                    $email = $_POST['email'];
+                    $diachi = $_POST['diachi'];
+                    $vaitro = $_POST['vaitro'];
+                    $sodienthoai = $_POST['sodienthoai'];
+                    update_taikhoanAdmin($id, $tennguoidung, $email, $sodienthoai, $diachi, $vaitro);
+                    $success = "Cập nhật thành công!";
+                }
+                $listkhachhang = loadAll_khachhang();
+                include "taikhoan/list.php";
+                break;
+                    
+            case 'xoakh':
+                if(isset($_GET['id']) && ($_GET['id']) > 0) {
+                    if(isset($_GET['vaitro']) && ($_GET['vaitro']) == 0){
+                        delete_khachhang(($_GET['id']));
+                    }
+                    else {
+                        $thongbao = "Không thể xóa người dùng này";
+                    } 
+                }
+                $listkhachhang = loadAll_khachhang();
+                include "taikhoan/list.php";
+                break;
+            
+            //binhluan
+            case 'dsbl':
+                $listkhachhang = loadAll_khachhang();
+                $listsanpham = loadAll_sanpham("", 0);
+                $listbinhluan = loadAll();
+                include "binhluan/list.php";
+                break;
+
+            case 'xoabl':
+                if(isset($_GET['idmsg']) && ($_GET['idmsg']) > 0) {
+                    delete_binhluan(($_GET['idmsg']));
+                }
+                $listbinhluan = loadAll();
+                $listkhachhang = loadAll_khachhang();
+                $listsanpham = loadAll_sanpham("", 0);
+                include "binhluan/list.php";
+                break;
             default:
                 include "home.php";
                 break;
