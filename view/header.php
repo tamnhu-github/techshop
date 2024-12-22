@@ -4,12 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dự án PHP</title>
-    <link rel="stylesheet" href="view/css/style.css">
     <title>TechShop</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="view/css/style.css">
+
 </head>
 
 <body>
@@ -34,17 +33,4 @@
                 </div>
             </nav>
         </div>
-        <div class="row mb menu">
-            <ul>
-                <li><a href="../index.php">Trang chủ</a></li>
-                <li><a href="index.php?act=gioithieu">Giới thiệu</a></li>
-                <li><a href="index.php?act=lienhe">Liên hệ</a></li>
-                <li><a href="index.php?act=gopy">Góp ý</a></li>
-                <li><a href="index.php?act=hoidap">Hỏi đáp</a></li>
-            </ul>
-        </div>
-        </div>
-</body>
-
-</html>
-</header>
+    </header>

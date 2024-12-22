@@ -8,16 +8,7 @@
         $sql = "delete from sanpham where masanpham = ".$masanpham;
         pdo_execute($sql);
     }
-<<<<<<< HEAD
-    function loadall_sanpham_home(){
-        $sql = "SELECT * FROM sanpham WHERE 1 ORDER BY masanpham DESC LIMIT 0,9";
-        $listsanpham = pdo_query($sql);
-        return $listsanpham;
-    }
-    function loadAll_sanpham($key, $maloai) {
-=======
     function loadAll_sanpham($key="", $maloai=0) {
->>>>>>> nhu
         $sql = "select * from sanpham where 1";
         if($key!="") {
             $sql.=" and tensanpham like'%".$key."%'";
