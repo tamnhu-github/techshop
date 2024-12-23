@@ -200,7 +200,6 @@ a.btn.btn-warning.btn-sm {
     text-decoration: none; 
     background-color: #ffc107; 
     color: black; 
-    border: 2px solid #ffc107; 
     border-radius: 30px; 
     transition: all 0.3s ease; 
 }
@@ -208,13 +207,11 @@ a.btn.btn-warning.btn-sm {
 
 a.btn.btn-warning.btn-sm:hover {
     background-color: #e0a800; 
-    border-color: #d39e00;
     transform: translateY(-4px); 
 }
 
 a.btn.btn-warning.btn-sm:active {
     background-color: #d39e00; 
-    border-color: #c69500; 
     transform: translateY(1px); 
 }
 
@@ -240,6 +237,45 @@ a.btn.btn-warning.btn-sm:active {
 .card-header .form-check-label {
     font-size: 18px; /* Tăng kích thước chữ lên một chút */
     margin-left: 10px; /* Khoảng cách giữa radio button và chữ */
+}
+input.btn.btn-warning.btn-sm {
+    display: inline-block;
+    padding: 12px 25px;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    background-color: #ffc107;
+    color: black;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+input.btn.btn-warning.btn-sm:hover {
+    background-color: #e0a800;
+    transform: translateY(-4px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+input.btn.btn-warning.btn-sm:active {
+    background-color: #d39e00;
+    transform: translateY(1px);
+    box-shadow: none;
+}
+
+@media (max-width: 576px) {
+    input.btn.btn-warning.btn-sm {
+        font-size: 14px;
+        padding: 10px 20px;
+    }
+}
+
+/* Thêm style cho container */
+.action-buttons {
+    margin-top: 10px;
+    text-align: center;
 }
 
 

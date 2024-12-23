@@ -63,7 +63,7 @@
             if(isset($_POST['gui']) && ($_POST['gui'])) {
                 $noidung = $_POST['noidung'];
                 $masanpham = $_POST['masanpham'];
-                $ngaybinhluan = date('h:i:sa d/m/Y');
+                $ngaybinhluan = date('h:i:sa d/m/Y'); 
                 insert_binhluan($iduser, $masanpham, $noidung, $ngaybinhluan);
                 header("Location: ".$_SERVER['HTTP_REFERER']);
             }

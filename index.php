@@ -5,6 +5,7 @@
     include "model/sanpham.php";
     include "model/danhmuc.php";
     include "model/taikhoan.php";
+    include "model/cart.php";
     include "global.php";
 
     //kiem tra session mycart
@@ -181,6 +182,33 @@
                 break;
             case 'dathang':
                 include "view/cart/bill.php";
+                break;
+
+            case 'billconfirm':
+                //tao moi don hang
+                if(isset($_POST['confirm']) && ($_POST['confirm'])) {
+                    $tennguoidathang = $_POST['tennguoidathang'];
+                    $email = $_POST['email'];
+                    $diachi = $_POST['diachi'];
+                    $sodienthoai = $_POST['sodienthoai'];
+                    $ngaydathang = date('h:i:sa d/m/Y');
+                    $pttt = $_POST['pttt'];
+                    $tongdonhang = tinhTongTien();
+                    
+                    //tra ve ma don hang moi tao
+                    $madonhang = insert_donhang($tennguoidathang, $email, $sodienthoai, $diachi, $pttt, $ngaydathang, $tongdonhang);
+                   
+                    //insert into cart : $_session['mycart'] & madonhang
+                    foreach ($_SESSION['mycart'] as $cart) {
+                        insert_cart($_SESSION['user']['id'], $cart[0], $cart[2], $cart[1], $cart[3], $cart[4], $cart[5], $madonhang);
+                    }
+
+                    //xoa session sau khi mua xong
+                    $_SESSION['mycart'] = [];
+                }
+                $donhang = loadOne_donhang($madonhang);
+                $chitietdonhang = loadAll_giohang($madonhang);
+                include "view/cart/billconfirm.php";
                 break;
             case 'chitietsanpham':
                 if(isset($_GET['masanpham']) && ($_GET['masanpham']) > 0 ) {

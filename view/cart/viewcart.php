@@ -64,14 +64,15 @@
                     <div class="total-amount">
                         <h5>
                             <strong>
-                                <i class="fas fa-wallet me-2"></i> TỔNG TIỀN: <?php echo number_format($tongtien); ?>
+                                <i class="fas fa-wallet me-2"></i> TỔNG TIỀN:
+                                <?php echo number_format(tinhtongtien()); ?>
                                 VND
                             </strong>
                         </h5>
                     </div>
                     <div class="action-buttons">
                         <a href="index.php?act=xoaspcart" class="btn btn-warning btn-sm me-2">Xóa toàn bộ giỏ hàng</a>
-                        <a href="index.php?act=dathang" class="btn btn-warning btn-sm">Đặt hàng</a>
+                        <a href="index.php?act=dathang" class="btn btn-warning btn-sm">Tiếp tục mua hàng</a>
                     </div>
                 </div>
             </div>

@@ -3,50 +3,54 @@
     <div class="row">
         <!-- Main Product Section -->
         <div class="col-lg-9">
-            <!-- Box: Chi Tiết Sản Phẩm -->
-            <div class="mb-4">
-                <h4 class="border-bottom pb-2 mb-3">THÔNG TIN ĐẶT HÀNG</h4>
-                <div class="card d-flex">
-                    <div class="card-body d-flex justify-content-right">
-                        <div class="custom-margin">
-                            <div class="row">
-
-                                <div class="col-md-4 mb-3">
-                                    <div class="d-flex align-items-center">
-                                        <label for="mkhientai" class="form-label mb-0 me-2">Tên người đặt hàng</label>
-                                        <input type="password" class="form-control" name="mkhientai" required>
-                                    </div>
-                                </div>
-                                <!-- Mật khẩu mới -->
-                                <div class="col-md-4 mb-3">
-                                    <div class="d-flex align-items-center">
-                                        <label for="mkmoi" class="form-label mb-0 me-2">Số điện thoại</label>
-                                        <input type="password" class="form-control" name="mkmoi" required>
-                                    </div>
-                                </div>
-                                <!-- Mật khẩu xác nhận -->
-                                <div class="col-md-4 mb-3">
-                                    <div class="d-flex align-items-center">
-                                        <label for="mkxacnhan" class="form-label mb-0 me-2">Địa chỉ</label>
-                                        <input type="password" class="form-control" name="mkxacnhan">
-                                    </div>
-                                </div>
-                            </div>
+            <h4 class="border-bottom pb-2 mb-3">THÔNG TIN ĐẶT HÀNG</h4>
+            <div class="card mb-4">
+                <div class="card-body">
+                    <?php
+                        
+                        if(isset($_SESSION['user'])) {
+                            $tennguoidathang = $_SESSION['user']['tennguoidung'];
+                            $email = $_SESSION['user']['email'];
+                            $sodienthoai = $_SESSION['user']['sodienthoai'];
+                            $diachi = $_SESSION['user']['diachi'];
+                        }
+                        else {
+                            $tennguoidathang = "";
+                            $email = "";
+                            $sodienthoai = "";
+                            $diachi = "";
+                        }
+                    ?>
+                    <form action="index.php?act=billconfirm" method="post" class="p-4 border rounded shadow-sm">
+                        <div class="mb-3">
+                            <label for="tennguoidathang" class="form-label fw-bold">Họ và tên người đặt hàng:</label>
+                            <input type="text" class="form-control" name="tennguoidathang" value="<?=$tennguoidathang?>"
+                                required>
                         </div>
-
-                    </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label fw-bold">Email:</label>
+                            <input type="email" class="form-control" name="email" value="<?=$email?>" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="sodienthoai" class="form-label fw-bold">Số điện thoại:</label>
+                            <input type="text" class="form-control" name="sodienthoai" value="<?=$sodienthoai?>"
+                                required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="diachi" class="form-label fw-bold">Địa chỉ:</label>
+                            <input type="text" class="form-control" name="diachi" value="<?=$diachi?>" required>
+                        </div>
 
                 </div>
             </div>
-
             <div class="card-header">
                 <h4 class="pb-2 mb-3 border-bottom">PHƯƠNG THỨC THANH TOÁN</h4>
                 <div class="form-check">
-                    <input type="radio" class="form-check-input" id="onlinePayment" name="paymentMethod" value="online">
-                    <label class="form-check-label" for="onlinePayment">Thanh toán trực tuyến</label>
+                    <input type="radio" class="form-check-input" name="pttt" value="2" required>
+                    <label class="form-check-label" for="pttt">Thanh toán trực tuyến</label>
                 </div>
                 <div class="form-check">
-                    <input type="radio" class="form-check-input" id="codPayment" name="paymentMethod" value="cod">
+                    <input type="radio" class="form-check-input" name="pttt" value="1" required>
                     <label class="form-check-label" for="codPayment">Thanh toán khi nhận hàng</label>
                 </div>
             </div>
@@ -75,28 +79,8 @@
                                     </thead>
                                     <tbody>
                                         <?php
-                                            $tongtien = 0;
-                                            foreach ($_SESSION['mycart'] as $cart) {
-                                                $anhPath = $cart[2];
-                                                $ttien = $cart[3] * $cart[4];
-                                                $tongtien += $ttien;
-                                                if(is_file($cart[2])) {
-                                                    $anh = "<img src='" . $anhPath . "' class='img-fluid mw-100' style='max-height:100px;'>";
-                                                }
-                                                else {
-                                                    $anh = "No photo";
-                                                }
-                                                    echo '<tr>
-                                                        <td>'.$anh.'</td>
-                                                        <td>'.$cart[1].'</td>
-                                                        <td>'.number_format($cart[3]).'</td>
-                                                        <td>'.$cart[4].'</td>
-                                                        <td>'.number_format($ttien).' VND</td>
-                                                    
-                                                    </tr>';
-                                            }
-                                        
-                                            ?>
+                                            viewcart();
+                                        ?>
                                     </tbody>
                                 </table>
                             </div>
@@ -107,22 +91,30 @@
                 </div>
 
             </div>
-            <div class="d-flex justify-content-between align-items-center mt-3">
+            <div class=" d-flex justify-content-between align-items-center mt-3">
                 <div class="total-amount">
                     <h5>
                         <strong>
-                            <i class="fas fa-wallet me-2"></i> TỔNG TIỀN: <?php echo number_format($tongtien); ?>
+                            <i class="fas fa-wallet me-2"></i> TỔNG TIỀN:
+                            <?php echo number_format(tinhtongtien()); ?>
                             VND
                         </strong>
                     </h5>
                 </div>
-                <div class="action-buttons">
-                    <a href="index.php?act=dathang" class="btn btn-warning btn-sm">Đặt hàng</a>
+                <div class="action-buttons-container" style="display: flex; gap: 10px; align-items: center;">
+                    <div class="action-buttons">
+                        <a href="index.php?act=viewcart" class="btn btn-warning btn-sm"
+                            style="background-color: gray; color: white;">Quay lại</a>
+                    </div>
+                    <div class="action-buttons">
+                        <input type="submit" class="btn btn-warning btn-sm" name="confirm"
+                            value="Xác nhận đặt hàng"></input>
+                    </div>
                 </div>
+
             </div>
         </div>
-
-
+        </form>
         <!-- Right Sidebar -->
         <?php
         include "view/rightbox.php";
