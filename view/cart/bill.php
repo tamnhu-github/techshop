@@ -115,6 +115,8 @@
             </div>
         </div>
         </form>
+
+
         <!-- Right Sidebar -->
         <?php
         include "view/rightbox.php";

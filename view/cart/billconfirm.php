@@ -130,6 +130,7 @@
         </div>
 
 
+
         <!-- Right Sidebar -->
         <?php
         include "view/rightbox.php";

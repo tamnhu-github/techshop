@@ -76,6 +76,15 @@
                     </div>
                 </div>
             </div>
+            <?php if (isset($thongbao)): ?>
+            <div class="alert alert-danger alert-dismissible fade show" role="alert" style="margin: 10px 0;">
+                <?php echo htmlspecialchars($thongbao); ?>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            <?php endif; ?>
+
+
+
         </div>
 
 

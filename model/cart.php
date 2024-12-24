@@ -32,6 +32,10 @@
         $sql = "INSERT INTO donhang (tennguoidathang, email, sodienthoai, diachi, pttt, ngaydathang, tongdonhang) VALUES ('$tennguoidathang','$email','$sodienthoai','$diachi','$pttt','$ngaydathang','$tongdonhang')";
         return pdo_execute_return_lastInsertId($sql);
     }
+    // function insert_donhang($iduser, $tennguoidathang, $email, $sodienthoai, $diachi, $pttt, $ngaydathang, $tongdonhang) {
+    //     $sql = "INSERT INTO donhang (iduser, tennguoidathang, email, sodienthoai, diachi, pttt, ngaydathang, tongdonhang) VALUES ('$iduser','$tennguoidathang','$email','$sodienthoai','$diachi','$pttt','$ngaydathang','$tongdonhang')";
+    //     return pdo_execute_return_lastInsertId($sql);
+    // }
 
     function insert_cart($iduser, $masanpham, $anh, $tensanpham, $gia, $soluong, $thanhtien, $madonhang) {
         $sql = "INSERT INTO giohang (iduser, masanpham, anh, tensanpham, gia, soluong, thanhtien, madonhang) VALUES ('$iduser','$masanpham','$anh','$tensanpham','$gia','$soluong','$thanhtien','$madonhang')";
@@ -42,6 +46,11 @@
         $sql = "select * from donhang where madonhang =".$madonhang;
         $dh = pdo_query_one($sql);
         return $dh;
+    }
+    function loadAll_donhang($iduser) {
+        $sql = "select * from donhang where iduser =".$iduser;
+        $listbill = pdo_query($sql);
+        return $listbill;
     }
     function donhang_chitiet($chitietdonhang) {
         global $img_path;
@@ -74,6 +83,33 @@
         $sql = "select * from giohang where madonhang =".$madonhang;
         $donhang = pdo_query($sql);
         return $donhang;
+    }
+
+    function getTrangThaiDonHang($status) {
+        switch ($status) {
+            case 0:
+                $trangthai = "Chờ xác nhận";
+                break;
+            case 1:
+                $trangthai = "Đang xử lý";
+                break;
+            case 2:
+                $trangthai = "Đang giao hàng";
+                break;
+            case 3:
+                $trangthai = "Đã giao hàng";
+                break;
+            default:
+                $trangthai = "Không xác định";
+                break;
+        }
+        return $trangthai;
+    }
+
+    function demSoLuongMatHang($madonhang) {
+        $sql = "select * from giohang where madonhang =".$madonhang;
+        $donhang = pdo_query($sql);
+        return sizeof($donhang);
     }
     
 ?>

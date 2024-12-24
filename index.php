@@ -180,13 +180,32 @@
             case 'viewcart':
                 include "view/cart/viewcart.php";
                 break;
-            case 'dathang':
-                include "view/cart/bill.php";
+            case 'dathang': 
+                if (!isset($_SESSION['user']) || $_SESSION['user']['id'] <= 0) {
+                    $thongbao = "Hãy đăng nhập để tiếp tục mua sắm bạn nhé!";
+                    $_SESSION['mycart'] = [];
+                    include "view/cart/viewcart.php"; 
+                } 
+                // Kiểm tra nếu giỏ hàng trống
+                elseif (!isset($_SESSION['mycart']) || empty($_SESSION['mycart'])) {
+                    $thongbao = "Giỏ hàng của bạn đang trống. Hãy thêm sản phẩm trước khi đặt hàng!";
+                    include "view/cart/viewcart.php"; 
+                } 
+                else {
+                    // Nếu đã đăng nhập, chuyển đến trang bill.php
+                    include "view/cart/bill.php";
+                }
                 break;
 
             case 'billconfirm':
                 //tao moi don hang
                 if(isset($_POST['confirm']) && ($_POST['confirm'])) {
+                    // //ko dang nhap van dat hang duoc
+                    // if (isset($_SESSION['user'])) {
+                    //     $iduser = $_SESSION['user']['id'];
+                    // }
+                    // else $iduser = 0;
+                    
                     $tennguoidathang = $_POST['tennguoidathang'];
                     $email = $_POST['email'];
                     $diachi = $_POST['diachi'];
@@ -199,6 +218,7 @@
                     $madonhang = insert_donhang($tennguoidathang, $email, $sodienthoai, $diachi, $pttt, $ngaydathang, $tongdonhang);
                    
                     //insert into cart : $_session['mycart'] & madonhang
+                
                     foreach ($_SESSION['mycart'] as $cart) {
                         insert_cart($_SESSION['user']['id'], $cart[0], $cart[2], $cart[1], $cart[3], $cart[4], $cart[5], $madonhang);
                     }
@@ -210,6 +230,12 @@
                 $chitietdonhang = loadAll_giohang($madonhang);
                 include "view/cart/billconfirm.php";
                 break;
+            case 'mybill':
+                $listbill = loadAll_donhang($_SESSION['user']['id']);
+                include "view/cart/mybill.php";
+                break;
+                
+                
             case 'chitietsanpham':
                 if(isset($_GET['masanpham']) && ($_GET['masanpham']) > 0 ) {
                     $masanpham = $_GET['masanpham'];

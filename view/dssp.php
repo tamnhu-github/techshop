@@ -24,16 +24,28 @@
                             $linkchitietsanpham = "index.php?act=chitietsanpham&masanpham=".$masanpham;
                             $gia_dinh_dang = number_format($gia, 0, ',', '.') . ' VND';
                             echo '<div class="col">
-                                    <a href="'.$linkchitietsanpham.'" class="text-decoration-none text-dark">
-                                        <div class="card h-100 shadow-sm transition-card" style="min-height: 450px;">
-                                            <img src="' . $anh . '" class="card-img-top" alt="" style="min-height: 200px; object-fit: cover;">
-                                            <div class="card-body p-2">
-                                                <h5 class="card-title mb-1">' . $tensanpham . '</h5>
-                                                <p class="card-text small text-truncate">' . $gia_dinh_dang . '</p>
-                                            </div>
+                                <a href="'.$linkchitietsanpham.'" class="text-decoration-none text-dark">
+                                    <div class="card h-100 shadow-sm transition-card" style="min-height: 450px;">
+                                        <img src="' . $anh . '" class="card-img-top" alt="">
+                                        <div class="card-body">
+                                            <h5 class="card-title">' . $tensanpham. '</h5>
+                                            <p class="card-text">' . $gia_dinh_dang . '</p>
                                         </div>
-                                    </a>
-                                </div>';
+                                        <div class="card-footer bg-transparent border-0 p-3">
+                                            <form action="index.php?act=addtocart" method="post" class="d-grid">
+                                                <input type="hidden" name="masanpham" value="'.$masanpham.'">
+                                                <input type="hidden" name="tensanpham" value="'.$tensanpham.'">
+                                                <input type="hidden" name="anh" value="'.$anh.'">
+                                                <input type="hidden" name="gia" value="'.$gia.'">
+                                                <input type="submit" name="addtocart" class="btn btn-primary" value="Thêm vào giỏ hàng">
+                                                    
+                                                </input>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </a>
+
+                            </div>';
                         }
                     ?>
                 </div>

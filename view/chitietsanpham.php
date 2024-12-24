@@ -32,9 +32,24 @@
                                     <p><?=$luotxem?></p>
                                 </li>
                                 <li class="mb-3">
-                                    <h5 class="fw-bold">Mô tả sản phẩm:</h5>
-                                    <p><?=$mota?></p>
+                                    <div>
+                                        <h5 class="fw-bold">Mô tả sản phẩm:</h5>
+                                        <p><?=$mota?></p>
+                                    </div>
                                 </li>
+                                <li class="mb-3 d-flex align-items-center justify-content-between">
+                                    <div>
+                                        <form action="index.php?act=addtocart" method="post">
+                                            <input type="hidden" name="masanpham" value="<?=$masanpham?>">
+                                            <input type="hidden" name="tensanpham" value="<?=$tensanpham?>">
+                                            <input type="hidden" name="anh" value="<?=$anh?>">
+                                            <input type="hidden" name="gia" value="<?=$gia?>">
+                                            <input type="submit" name="addtocart" class="btn btn-primary"
+                                                value="Thêm vào giỏ hàng">
+                                        </form>
+                                    </div>
+                                </li>
+
                             </ul>
                         </div>
 
