@@ -1,4 +1,3 @@
-<!-- Main Content -->
 <div class="container my-4">
     <div class="row">
         <div class="col-lg-9">
@@ -14,37 +13,37 @@
                                         <tr>
                                             <th>MÃ ĐƠN HÀNG</th>
                                             <th>NGÀY ĐẶT HÀNG</th>
-                                            <th>SỐ LƯỢNG MẶT HÀNG</th>
+                                            <th>SỐ LƯỢNG</th>
                                             <th>TỔNG TIỀN</th>
-                                            <th>TRẠNG THÁI ĐƠN HÀNG</th>
+                                            <th>TRẠNG THÁI</th>
                                             <th></th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <?php
-                                            if(is_array($listbill)) {
-                                            foreach ($listbill as $bill) {
-                                                extract($bill);
-                                                $xembill = "index.php?act=xembill&madonhang=".$bill['madonhang'];
-                                                $trangthai = getTrangThaiDonHang($bill['trangthai']);
-                                                $count = demSoLuongMatHang($bill['madonhang']);
-                                                    echo '<tr>
+                                                if (is_array($listbill)) {
+                                                   // echo 'Giá trị user ID: ' . ($_SESSION['user']['id'] ?? 'Không có giá trị');
+                                                    foreach ($listbill as $bill) {
+                                                        extract($bill);
+                                                        $xembill = "index.php?act=xembill&madonhang=".$bill['madonhang'];
+                                                        $trangthai = getTrangThaiDonHang($bill['trangthai']);
+                                                        $count = demSoLuongMatHang($bill['madonhang']);
+                                                        echo '<tr>
                                                                 <td>'.$bill['madonhang'].'</td>
                                                                 <td>'.$ngaydathang.'</td>
                                                                 <td>'.$count.'</td>
-                                                                <td>'.$bill['tongdonhang'].'</td>
-                                                                <td>'.$trangthai.' VND</td>
+                                                                <td>'.number_format($bill['tongdonhang'], 0, ',', '.').' VND</td>
+                                                                <td>'.$trangthai.'</td>
                                                                 <td>
-                                                                    <a href="'.$xembill.'" class="btn btn-primary btn-sm">Xem chi tiết</a>
-
+                                                                    <a href="'.$xembill.'" class="btn btn-primary btn-sm">Xem</a>
                                                                 </td>
-                                                        </tr>';
-                                            }
-                                        }
-                                        
-                                            ?>
+                                                            </tr>';
+                                                    }
+                                                }
+                                        ?>
                                     </tbody>
                                 </table>
+
                             </div>
                         </div>
 

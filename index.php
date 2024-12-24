@@ -200,11 +200,11 @@
             case 'billconfirm':
                 //tao moi don hang
                 if(isset($_POST['confirm']) && ($_POST['confirm'])) {
-                    // //ko dang nhap van dat hang duoc
-                    // if (isset($_SESSION['user'])) {
-                    //     $iduser = $_SESSION['user']['id'];
-                    // }
-                    // else $iduser = 0;
+                    //ko dang nhap van dat hang duoc
+                    if (isset($_SESSION['user'])) {
+                        $iduser = $_SESSION['user']['id'];
+                    }
+                    else $iduser = 0;
                     
                     $tennguoidathang = $_POST['tennguoidathang'];
                     $email = $_POST['email'];
@@ -215,7 +215,7 @@
                     $tongdonhang = tinhTongTien();
                     
                     //tra ve ma don hang moi tao
-                    $madonhang = insert_donhang($tennguoidathang, $email, $sodienthoai, $diachi, $pttt, $ngaydathang, $tongdonhang);
+                    $madonhang = insert_donhang($iduser, $tennguoidathang, $email, $sodienthoai, $diachi, $pttt, $ngaydathang, $tongdonhang);
                    
                     //insert into cart : $_session['mycart'] & madonhang
                 
@@ -233,6 +233,15 @@
             case 'mybill':
                 $listbill = loadAll_donhang($_SESSION['user']['id']);
                 include "view/cart/mybill.php";
+                break;
+            case 'xembill':
+                if(isset($_GET['madonhang']) && ($_GET['madonhang'])) {
+                    $madonhang = ($_GET['madonhang']);
+                    $donhang = loadOne_donhang($madonhang);
+                    $chitietdonhang = loadAll_giohang($madonhang);
+                    include "view/cart/billchitiet.php";
+                }
+                
                 break;
                 
                 

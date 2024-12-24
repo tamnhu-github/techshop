@@ -5,6 +5,7 @@
     include "../model/sanpham.php";
     include "../model/taikhoan.php";
     include "../model/binhluan.php";
+    include "../model/cart.php";
     include "header.php";
 
     //controller
@@ -190,6 +191,27 @@
                 $listkhachhang = loadAll_khachhang();
                 $listsanpham = loadAll_sanpham("", 0);
                 include "binhluan/list.php";
+                break;
+
+            //đơn hàng
+            case 'dsdh':
+                if(isset($_POST['btnTim']) && ($_POST['btnTim'])) {
+                    $key = $_POST['key'];
+                }
+                else {
+                    $key = "";
+                }
+                $listkhachhang = loadAll_khachhang();
+                $listdonhang = loadAll_listBill($key);
+                include "donhang/list.php";
+                break;
+            case 'xoadh':
+                if(isset($_GET['madonhang']) && ($_GET['madonhang']) > 0) {
+                    delete_donhang(($_GET['madonhang']));
+                }
+                $listkhachhang = loadAll_khachhang();
+                $listdonhang = loadAll_listBill("");
+                include "donhang/list.php";
                 break;
             default:
                 include "home.php";

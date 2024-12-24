@@ -28,14 +28,10 @@
         }
         return $tongtien;
     }
-    function insert_donhang($tennguoidathang, $email, $sodienthoai, $diachi, $pttt, $ngaydathang, $tongdonhang) {
-        $sql = "INSERT INTO donhang (tennguoidathang, email, sodienthoai, diachi, pttt, ngaydathang, tongdonhang) VALUES ('$tennguoidathang','$email','$sodienthoai','$diachi','$pttt','$ngaydathang','$tongdonhang')";
+    function insert_donhang($iduser, $tennguoidathang, $email, $sodienthoai, $diachi, $pttt, $ngaydathang, $tongdonhang) {
+        $sql = "INSERT INTO donhang (iduser, tennguoidathang, email, sodienthoai, diachi, pttt, ngaydathang, tongdonhang) VALUES ('$iduser','$tennguoidathang','$email','$sodienthoai','$diachi','$pttt','$ngaydathang','$tongdonhang')";
         return pdo_execute_return_lastInsertId($sql);
     }
-    // function insert_donhang($iduser, $tennguoidathang, $email, $sodienthoai, $diachi, $pttt, $ngaydathang, $tongdonhang) {
-    //     $sql = "INSERT INTO donhang (iduser, tennguoidathang, email, sodienthoai, diachi, pttt, ngaydathang, tongdonhang) VALUES ('$iduser','$tennguoidathang','$email','$sodienthoai','$diachi','$pttt','$ngaydathang','$tongdonhang')";
-    //     return pdo_execute_return_lastInsertId($sql);
-    // }
 
     function insert_cart($iduser, $masanpham, $anh, $tensanpham, $gia, $soluong, $thanhtien, $madonhang) {
         $sql = "INSERT INTO giohang (iduser, masanpham, anh, tensanpham, gia, soluong, thanhtien, madonhang) VALUES ('$iduser','$masanpham','$anh','$tensanpham','$gia','$soluong','$thanhtien','$madonhang')";
@@ -51,6 +47,15 @@
         $sql = "select * from donhang where iduser =".$iduser;
         $listbill = pdo_query($sql);
         return $listbill;
+    }
+    function loadAll_listBill($key=""){
+        $sql = "select * from donhang where 1";
+        if($key != "") {
+            $sql .= " AND (madonhang LIKE '%".$key."%' OR tennguoidathang LIKE '%".$key."%')";
+        }
+        $sql .= " order by madonhang desc";
+        $listdonhang = pdo_query($sql);
+        return $listdonhang;
     }
     function donhang_chitiet($chitietdonhang) {
         global $img_path;
@@ -111,5 +116,12 @@
         $donhang = pdo_query($sql);
         return sizeof($donhang);
     }
+
+    function delete_donhang($madonhang) {
+        $sql = "delete from giohang where madonhang = ".$madonhang."; delete from donhang where madonhang = ".$madonhang;
+        pdo_execute($sql);
+    }
+
+    
     
 ?>

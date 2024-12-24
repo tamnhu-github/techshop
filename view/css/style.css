@@ -277,6 +277,42 @@ input.btn.btn-warning.btn-sm:active {
     margin-top: 10px;
     text-align: center;
 }
+/* Căn chỉnh toàn bộ bảng */
+.table {
+    text-align: center; /* Căn giữa nội dung trong các ô */
+    vertical-align: middle; /* Căn giữa theo chiều dọc */
+}
+
+/* Thêm khoảng cách giữa các ô */
+.table td, .table th {
+    padding: 10px; /* Thêm khoảng cách bên trong ô */
+}
+
+/* Canh đều nội dung các cột */
+.table th {
+    font-weight: bold; /* Làm nổi bật tiêu đề */
+    background-color: #f8f9fa; /* Thêm màu nền nhạt cho tiêu đề */
+}
+
+/* Làm nổi bật các hàng xen kẽ */
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: #f2f2f2; /* Màu nền nhẹ cho hàng lẻ */
+}
+.table-striped tbody tr:nth-of-type(even) {
+    background-color: #ffffff; /* Màu nền trắng cho hàng chẵn */
+}
+
+/* Canh phải cho cột số tiền */
+.table td:nth-child(4) {
+    text-align: right; /* Căn phải cột tổng tiền */
+}
+
+/* Căn giữa cột trạng thái và nút */
+.table td:nth-child(5),
+.table td:nth-child(6) {
+    text-align: center;
+}
+
 
 
 

@@ -61,8 +61,12 @@
                             <a class="nav-link" href="index.php?act=dsbl">Bình luận</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link" href="index.php?act=dsdh">Đơn hàng</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" href="index.php?act=thongke">Thống kê</a>
                         </li>
+
                     </ul>
                 </div>
             </div>
