@@ -8,7 +8,6 @@
         $sql = "delete from sanpham where masanpham = ".$masanpham;
         pdo_execute($sql);
     }
-
     function loadAll_sanpham($key="", $maloai=0) {
         $sql = "select * from sanpham where 1";
         if($key!="") {

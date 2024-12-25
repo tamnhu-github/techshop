@@ -28,14 +28,12 @@
         </form>
     </div>
 </div>
-
 <div class="row m-5">
     <div class="col-12">
         <div class="card">
             <div class="card-header">
                 <h4 class="card-title">DANH SÁCH ĐƠN HÀNG</h4>
             </div>
-            
             <div class="card-body">
                 <div class="table-responsive">
                     <table class="table table-striped table-bordered">
@@ -88,7 +86,6 @@
                 <button type="button" class="btn btn-primary">Chọn tất cả</button>
                 <button type="button" class="btn btn-secondary">Bỏ chọn tất cả</button>
                 <button type="button" class="btn btn-danger">Xóa các mục đã chọn</button>
-
                 <div class="text-center mt-3">
     <ul class="pagination justify-content-center">
         <!-- Previous button -->

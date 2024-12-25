@@ -229,4 +229,3 @@ function delete_donhang($madonhang)
     $sql = "delete from giohang where madonhang = " . $madonhang . "; delete from donhang where madonhang = " . $madonhang;
     pdo_execute($sql);
 }
-

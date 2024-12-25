@@ -16,6 +16,7 @@
                             $sodienthoai = $_SESSION['user']['sodienthoai'];
                             $diachi = $_SESSION['user']['diachi'];
                         } else {
+
                             $tennguoidathang = "";
                             $email = "";
                             $sodienthoai = "";

@@ -233,7 +233,7 @@ if (isset($_GET['act'])) {
             include "donhang/listdetails.php";
             break;
         case 'suadh':
-      
+
             if (isset($_GET['madonhang']) && ($_GET['madonhang']) > 0) {
                 $madonhang = $_GET['madonhang'];
                 $trangthai = $_GET['trangthai'];
@@ -291,7 +291,7 @@ if (isset($_GET['act'])) {
             //thong ke
         case 'thongke':
             $dstk = loadall_thongke_sanphamdanhmuc();
-            
+
             include "thongke/list.php";
             break;
         case 'bieudo':
