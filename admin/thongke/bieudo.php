@@ -1,5 +1,5 @@
 <div class="container text-center m-3">
-    <h1>SỐ LIỆU THỐNG KÊ/h1>
+    <h1>SỐ LIỆU THỐNG KÊ</h1>
     <div class="row mt-4">
         <div class="col-md-6">
             <!-- Biểu đồ tròn -->
