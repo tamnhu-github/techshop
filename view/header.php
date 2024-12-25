@@ -29,6 +29,18 @@
                             <li class="nav-item"><a class="nav-link" href="index.php?act=gopy">Góp ý</a></li>
                             <li class="nav-item"><a class="nav-link" href="index.php?act=hoidap">Hỏi đáp</a></li>
                         </ul>
+                        <div class="d-flex ms-auto">
+                            <a href="index.php?act=mybill" class="btn btn-outline-light me-2">
+                                <i class="fas fa-box"></i> Đơn hàng của tôi
+                            </a>
+
+                            <a href="index.php?act=viewcart" class="btn btn-outline-light position-relative">
+                                <i class="fas fa-shopping-cart"></i>
+                                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                    <?php echo isset($soLuongGioHang) ? $soLuongGioHang : 0; ?>
+                                </span>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </nav>

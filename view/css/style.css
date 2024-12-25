@@ -73,12 +73,10 @@
     input[type="button"]:hover {
         background-color: #45a049;
     }
-
-
-
     .mySlides {display: none;}
 img {vertical-align: middle;}
 
+/* SLIDESHOW */
 /* Slideshow container */
 .slideshow-container {
   max-width: 1000px;
@@ -134,7 +132,6 @@ img {vertical-align: middle;}
     .transition-card {
         transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
-
     .transition-card:hover {
         transform: translateY(-10px); 
         box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); 
@@ -312,6 +309,11 @@ input.btn.btn-warning.btn-sm:active {
 .table td:nth-child(6) {
     text-align: center;
 }
+
+#myChart, #myPlot {
+    height: 600px; /* Chiều cao cố định cho cả hai biểu đồ */
+}
+
 
 
 

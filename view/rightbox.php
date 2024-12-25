@@ -19,7 +19,6 @@
             <p><strong><i class="fas fa-envelope"></i> Email:</strong> <?= $email ?></p>
 
             <div class="d-grid gap-2 mt-3">
-                <a href="index.php?act=mybill" class="btn btn-secondary">Giỏ hàng của tôi</a>
                 <a href="index.php?act=edit_taikhoan" class="btn btn-warning">Cập nhật tài khoản</a>
                 <a href="index.php?act=doimatkhau" class="btn btn-secondary">Đổi mật khẩu</a>
                 <?php
