@@ -1,19 +1,83 @@
-/* *{
-  box-sizing: border-box;
-  font-family: sans-serif;
-  font-size: 0.7vw;
-} */
-* {
-  box-sizing: border-box;
-}
+* {box-sizing:border-box}
+    .headeradmin {
+        background-color: #333;
+        color: #fff;
+        padding: 10px;
+        text-align: center;
+    }
+    .headeradmin h1 {
+        margin: 0;
+        font-size: 24px;
+    }
+    /* Navigation Menu Styles */
+    .menu {
+        background-color: #444;
+        padding: 10px 0;
+    }
+    .menu ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+    }
+    .menu li {
+        margin: 0 10px;
+    }
+    .menu a {
+        color: #fff;
+        text-decoration: none;
+        padding: 5px 10px;
+    }
+    .menu a:hover {
+        background-color: #555;
+    }
+    /* Home Content Styles */
+    .frmtitle {
+        background-color: #f1f1f1;
+        padding: 10px;
+        text-align: center;
+    }
+    .frmtitle h1 {
+        margin: 0;
+        font-size: 20px;
+    }
+    .frmcontent {
+        padding: 20px;
+        max-width: 800px;
+        margin: 0 auto;
+    }
+    .row {
+        margin-bottom: 10px;
+    }
+    .mb10 {
+        margin-bottom: 10px;
+    }
+    input[type="text"],
+    input[type="submit"],
+    input[type="reset"],
+    input[type="button"] {
+        padding: 5px 10px;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+    }
+    input[type="submit"],
+    input[type="reset"],
+    input[type="button"] {
+        background-color: #4CAF50;
+        color: #fff;
+        cursor: pointer;
+    }
+    input[type="submit"]:hover,
+    input[type="reset"]:hover,
+    input[type="button"]:hover {
+        background-color: #45a049;
+    }
 
-body {
-  font-family: sans-serif;
-  font-size: 0.7vw; 
-}
-.container {
-  font-size: inherit; 
-}
+
+
+    .mySlides {display: none;}
+img {vertical-align: middle;}
 
 /* SLIDESHOW */
 /* Slideshow container */
@@ -21,38 +85,6 @@ body {
   max-width: 1000px;
   position: relative;
   margin: auto;
-}
-
-/* Hide the images by default */
-.mySlides {
-  display: none;
-}
-
-/* Next & previous buttons */
-.prev, .next {
-  cursor: pointer;
-  position: absolute;
-  top: 50%;
-  width: auto;
-  margin-top: -22px;
-  padding: 16px;
-  color: white;
-  font-weight: bold;
-  font-size: 18px;
-  transition: 0.6s ease;
-  border-radius: 0 3px 3px 0;
-  user-select: none;
-}
-
-/* Position the "next button" to the right */
-.next {
-  right: 0;
-  border-radius: 3px 0 0 3px;
-}
-
-/* On hover, add a black background color with a little bit see-through */
-.prev:hover, .next:hover {
-  background-color: rgba(0,0,0,0.8);
 }
 
 /* Caption text */
@@ -77,7 +109,6 @@ body {
 
 /* The dots/bullets/indicators */
 .dot {
-  cursor: pointer;
   height: 15px;
   width: 15px;
   margin: 0 2px;
@@ -87,7 +118,7 @@ body {
   transition: background-color 0.6s ease;
 }
 
-.active, .dot:hover {
+.active {
   background-color: #717171;
 }
 
@@ -98,303 +129,205 @@ body {
 }
 
 @keyframes fade {
-  from {opacity: .4}
+  from {opacity: .4} 
   to {opacity: 1}
 }
-
-/* HOME */
-
-
-.boxcenter{
-  width: 70%;
-  margin: 0 auto;
-
-}
-.row{
-  float: left;
-  width: 100%;
-}
-.mb{
-  margin-bottom: 30px;
-
-}
-.mb10{
-  margin-bottom: 10px;
-}
-.mr{
-  margin-right: 2%;
-}
-.demo{
-  background-color: antiquewhite;
-  min-height: 100px;
-}
-.header{
-  background-color: aquamarine;
-  border: 1px #090 solid;
-  font-size: 1vw;
-  color: blue;
-  border-radius: 5px;
-}
-.header h1{
-  margin: 10px 20px;
-}
-.footer{
-  background-color: aquamarine;
-  border: 1px #090 solid;
-  font-size: 0.8vw;
-  color: blue;
-  border-radius: 5px;
-}
-.menu{
-  background-color: black;
-  color: #ccc;
-  border-radius: 5px;
-}
-.boxtrai{
-  float: left;
-  width: 74%;
-}
-
-.boxphai{
-  float: left;
-  width: 24%;
-}
-.boxtitle{
-  background-color: #ccc;
-  padding: 10px;
-  border-top-left-radius: 5px;
-  border-top-right-radius: 5px;
-  border: 1px #ccc solid;
-}
-.boxcontent{
-  border-left: 1px #ccc solid;
-  border-right: 1px #ccc solid;
-  border-bottom: 1px #ccc solid;
-  border-bottom-left-radius: 5px;
-  border-bottom-right-radius: 5px;
-  min-height: 200px;
-  padding: 20px;
-}
-.boxcontent2{
-  border-left: 1px #ccc solid;
-  border-right: 1px #ccc solid;
-  background-color: #eee;
-}
-.boxfooter{
-  padding: 10px;
-  border-bottom-left-radius: 5px;
-  border-bottom-right-radius: 5px;
-  border-left: 1px #ccc solid;
-  border-right: 1px #ccc solid;
-  border-bottom: 1px #ccc solid;
-}
-.banner{
-  min-height: 300px;
-  width: 100%;
-  text-align: center;
-}
-.banner img{
-  height: 300px;
-}
-.boxsp{
-  float: left;
-  width: 32%;
-  min-height: 300px;
-  border: 1px #eee solid;
-  border-radius: 5px;
-  
-}
-.boxsp .img{
-  min-height: 230px;
-  text-align: center;
-
-}
-.boxsp a {
-  text-decoration: none; 
-  color: black; 
-  font-weight: bold; 
-  transition: color 0.3s; 
-}
-
-.boxsp a:hover {
-  color: #999; 
-}
-.img img{
-  height: 220px;
-}
-.menu ul{
-  padding: 0px 15px;
-}
-.meu ul li{
-  list-style-type: none;
-  display: inline;
-  padding: 0px 15px;
-}
-.menu ul li a{
-  color: #ccc;
-  text-decoration: none;
-  transition: 0.5s;
-}
-.menu ul li a:hover{
-  color: white;
-  font-size: 0.7vw;
-}
-.frmtaikhoan{
-  line-height: 150%;
-}
-.frmtaikhoan input[type="text"],
-.frmtaikhoan input[type="password"],
-.frmcontent input[type="text"]{
-  width: 100%;
-  border: 1px #ccc solid;
-  padding: 5px 10px;
-  border-radius: 5px;
-}
-
-.frmtaikhoan input[type="checkbox"]{
-  border-radius: 5px;
-}
-.frmtaikhoan input[type="submit"],
-.frmcontent input[type="submit"],
-.frmcontent input[type="reset"],
-.frmcontent input[type="button"]{
-  border-radius: 5px;
-  padding: 5px 10px;
-  background-color: #45a049;
-  border: 1px #090 solid;
-}
-.frmtaikhoan input[type="submit"]:hover,
-.frmcontent input[type="reset"]:hover,
-.frmcontent input[type="button"]:hover{
-  background-color: #0f5713;
-}
-.frmtaikhoan li a{
-  color: teal;
-  text-decoration: none;
-}
-.frmtaikhoan li a:hover{
-  color: rgb(0, 96, 96);
-  text-decoration: underline;
-}
-/* Menu doc*/
-.menudoc ul{
-  margin: 0;
-  padding: 0;
-  list-style-type: none;
-
-}
-.menudoc ul li{
-  padding: 10px 20px;
-  background-color: #fff;
-  border-bottom: 1px #ccc solid;
-}
-.menudoc ul li a{
-  color: #666;
-  text-decoration: none;
-
-}
-.menudoc ul li:hover{
-  background-color: #ccc;
-  text-decoration: none;
-  
-}
-.searchbox input[type="text"]{
-  width: 100%;
-  padding: 5px 10px;
-  background-color: #fff;
-  border:  1px #ccc solid;
-  border-radius: 5px;
-
-}
-.top10 img{
-  width: 20%;
-  height: 50px;
-  float: left;
-  margin-left: 10px;
-  border-radius: 5px;
-  border: 1px #ccc solid;
-}
-.top10 a{
-  color: #666;
-  text-decoration: none;
-}
-.top10 a:hover{
-  color: #000;
-  text-decoration: underline;
-}
-/* ADMIN */
-.headeradmin {
-    background-color: #333;
-    color: #fff;
-    padding: 10px;
-    text-align: center;
+    .transition-card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
-    .headeradmin h1 {
-    margin: 0;
-    font-size: 24px;
+
+
+    .transition-card:hover {
+        transform: translateY(-10px); 
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); 
     }
-    /* Navigation Menu Styles */
-    .menu {
-    background-color: #444;
-    padding: 10px 0;
+    .custom-margin {
+        margin-left: 80px;
+        margin-top: 10px;
     }
-    .menu ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
+    .alert {
+        border-radius: 10px;
+        padding: 15px;
+        font-size: 16px;
+        background-color: #f0f8ff;
+        color: #0056b3;
+        border: 1px solid #bee5eb;
+        margin-top: 20px;
+    }
+    
+    .alert-info {
+        background-color: #d1ecf1;
+        border-color: #b8daff;
+    }
+    
+    .alert .btn-close {
+        opacity: 1;
+        background-color: transparent;
+        border: none;
+        color: #0056b3;
+    }
+    
+    .alert .btn-close:hover {
+        color: #004085;
+    }
+    .alert-danger {
+        background-color: #f8d7da !important; 
+        color: #721c24 !important;    
+        border-color: #f5c6cb !important; 
+    }
+    .sticky-header {
+        position: sticky;
+        top: 0;
+        background-color: white;
+        z-index: 1000;
+        padding: 10px;
+        border-bottom: 1px solid #dee2e6;
+    }
+    
+    .card-body {
+        max-height: 500px;
+        overflow-y: auto;
+    }
+    
+    .table {
+        margin-bottom: 0;
+    }
+    /* Định dạng nút xóa toàn bộ giỏ hàng */
+a.btn.btn-warning.btn-sm {
+    display: inline-block;
+    padding: 12px 25px; 
+    font-size: 16px;
+    font-weight: bold; 
+    text-align: center; 
+    text-decoration: none; 
+    background-color: #ffc107; 
+    color: black; 
+    border-radius: 30px; 
+    transition: all 0.3s ease; 
+}
+
+
+a.btn.btn-warning.btn-sm:hover {
+    background-color: #e0a800; 
+    transform: translateY(-4px); 
+}
+
+a.btn.btn-warning.btn-sm:active {
+    background-color: #d39e00; 
+    transform: translateY(1px); 
+}
+
+@media (max-width: 576px) {
+    a.btn.btn-warning.btn-sm {
+        font-size: 14px; 
+        padding: 10px 20px; 
+    }
+}
+.d-flex {
     display: flex;
-    justify-content: center;
-    }
-    .menu li {
-    margin: 0 10px;
-    }
-    .menu a {
-    color: #fff;
-    text-decoration: none;
-    padding: 5px 10px;
-    }
-    .menu a:hover {
-    background-color: #555;
-    }
-    /* Home Content Styles */
-    .frmtitle {
-    background-color: #f1f1f1;
-    padding: 10px;
-    text-align: center;
-    }
-    .frmtitle h1 {
-    margin: 0;
-    font-size: 20px;
-    }
-    .frmcontent {
-    padding: 20px;
-    max-width: 800px;
-    margin: 0 auto;
-    }
-    .row {
-      margin-bottom: 10px;
-    }
    
-    .mb10 {
-    margin-bottom: 10px;
-    }
-    input[type="text"],
-    input[type="submit"],
-    input[type="reset"],
-    input[type="button"] {
-    padding: 5px 10px;
-    border: 1px solid #ccc;
-    border-radius: 3px;
-    }
-    input[type="submit"],
-    input[type="reset"],
-    input[type="button"] {
-    background-color: #4CAF50;
-    color: #fff;
+}
+
+.action-buttons {
+    display: flex; /* Sử dụng flexbox cho các nút */
+    gap: 10px; /* Khoảng cách giữa các nút */
+}
+
+.btn {
+    white-space: nowrap; /* Đảm bảo nút không bị gãy dòng */
+}
+.card-header .form-check-label {
+    font-size: 18px; /* Tăng kích thước chữ lên một chút */
+    margin-left: 10px; /* Khoảng cách giữa radio button và chữ */
+}
+input.btn.btn-warning.btn-sm {
+    display: inline-block;
+    padding: 12px 25px;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    background-color: #ffc107;
+    color: black;
+    border: none;
+    border-radius: 30px;
     cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+input.btn.btn-warning.btn-sm:hover {
+    background-color: #e0a800;
+    transform: translateY(-4px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+input.btn.btn-warning.btn-sm:active {
+    background-color: #d39e00;
+    transform: translateY(1px);
+    box-shadow: none;
+}
+
+@media (max-width: 576px) {
+    input.btn.btn-warning.btn-sm {
+        font-size: 14px;
+        padding: 10px 20px;
     }
-    input[type="submit"]:hover,
-    input[type="reset"]:hover,
-    input[type="button"]:hover {
-    background-color: #45a049;
-    }
+}
+
+/* Thêm style cho container */
+.action-buttons {
+    margin-top: 10px;
+    text-align: center;
+}
+/* Căn chỉnh toàn bộ bảng */
+.table {
+    text-align: center; /* Căn giữa nội dung trong các ô */
+    vertical-align: middle; /* Căn giữa theo chiều dọc */
+}
+
+/* Thêm khoảng cách giữa các ô */
+.table td, .table th {
+    padding: 10px; /* Thêm khoảng cách bên trong ô */
+}
+
+/* Canh đều nội dung các cột */
+.table th {
+    font-weight: bold; /* Làm nổi bật tiêu đề */
+    background-color: #f8f9fa; /* Thêm màu nền nhạt cho tiêu đề */
+}
+
+/* Làm nổi bật các hàng xen kẽ */
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: #f2f2f2; /* Màu nền nhẹ cho hàng lẻ */
+}
+.table-striped tbody tr:nth-of-type(even) {
+    background-color: #ffffff; /* Màu nền trắng cho hàng chẵn */
+}
+
+/* Canh phải cho cột số tiền */
+.table td:nth-child(4) {
+    text-align: right; /* Căn phải cột tổng tiền */
+}
+
+/* Căn giữa cột trạng thái và nút */
+.table td:nth-child(5),
+.table td:nth-child(6) {
+    text-align: center;
+}
+
+#myChart, #myPlot {
+    height: 600px; /* Chiều cao cố định cho cả hai biểu đồ */
+}
+
+
+
+
+
+
+    
+
+
+
+    
+    
+    

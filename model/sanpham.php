@@ -8,17 +8,8 @@
         $sql = "delete from sanpham where masanpham = ".$masanpham;
         pdo_execute($sql);
     }
-    function loadall_sanpham_top10(){
-        $sql = "SELECT * FROM sanpham WHERE 1 ORDER BY luotxem DESC LIMIT 0,10";
-        $listsanpham = pdo_query($sql);
-        return $listsanpham;
-    }
-    function loadall_sanpham_home(){
-        $sql = "SELECT * FROM sanpham WHERE 1 ORDER BY masanpham DESC LIMIT 0,9";
-        $listsanpham = pdo_query($sql);
-        return $listsanpham;
-    }
-    function loadAll_sanpham($key, $maloai) {
+
+    function loadAll_sanpham($key="", $maloai=0) {
         $sql = "select * from sanpham where 1";
         if($key!="") {
             $sql.=" and tensanpham like'%".$key."%'";
@@ -56,6 +47,26 @@
         }
         
         pdo_execute($sql);
+    }
+
+    //lay 9 san pham cho trang chu
+    function loadAll_sanpham_home() {
+        $sql = "select * from sanpham where 1 order by masanpham desc limit 0,9";
+        $listsanpham = pdo_query($sql);
+        return $listsanpham;
+    }
+
+    //top 10 yeu thich
+    function loadAll_sanpham_top10() {
+        $sql = "select * from sanpham where 1 order by luotxem desc limit 0,10";
+        $listsanpham = pdo_query($sql);
+        return $listsanpham;
+    }
+    //lay nhung san pham cung loai voi masanpham
+    function loadAll_sanpham_cungloai($masanpham) {
+        $sql = "select * from sanpham where masanpham <> ".$masanpham." and maloai= (select maloai from sanpham where masanpham=".$masanpham.")";
+        $listcungloai = pdo_query($sql);
+        return $listcungloai;
     }
 
 ?>
