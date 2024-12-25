@@ -1,5 +1,7 @@
 <?php
-session_start();  //bat dau session
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();  // Khởi động session nếu chưa có
+}  //bat dau session
 include "model/cart.php";
 $soLuongGioHang = getSoLuongGioHang();
 include "view/header.php";
@@ -274,8 +276,16 @@ if (isset($_GET['act'])) {
             include "view/cart/billconfirm.php";
             break;
         case 'mybill':
-            $listbill = loadAll_donhang($_SESSION['user']['id']);
-            include "view/cart/mybill.php";
+            if (isset($_SESSION['user'])) {
+                $iduser = $_SESSION['user']['id'];
+                $listbill = loadAll_donhang($iduser);
+                include "view/cart/mybill.php";
+            } else {
+                // Chuyển hướng đến trang đăng nhập
+                $_SESSION['thongbao'] = "Vui lòng đăng nhập để xem hóa đơn.";
+                header('Location: index.php'); 
+                exit(); 
+            }
             break;
         case 'xembill':
             if (isset($_GET['madonhang']) && ($_GET['madonhang'])) {
@@ -324,5 +334,3 @@ if (isset($_GET['act'])) {
 }
 
 include "view/footer.php";
-
-
