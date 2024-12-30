@@ -9,7 +9,7 @@
             <!-- Tìm kiếm theo trạng thái -->
             <div class="col-md-2">
                 <select name="trangthai" class="form-select">
-                    <option value="">Tất cả</option>
+                    <option value="" <?= (isset($trangthai) && $trangthai === null) ? 'selected' : '' ?>>Tất cả</option>
                     <option value="0" <?= (isset($trangthai) && $trangthai == 0) ? 'selected' : '' ?>>Chờ xác nhận</option>
                     <option value="1" <?= (isset($trangthai) && $trangthai == 1) ? 'selected' : '' ?>>Đang xử lý</option>
                     <option value="2" <?= (isset($trangthai) && $trangthai == 2) ? 'selected' : '' ?>>Đang giao hàng</option>
@@ -114,5 +114,23 @@
                 </div>
             </div>
         </div>
+    
+        <?php
+        if (isset($_SESSION['success']) && $_SESSION['success'] != "") {
+            echo '<div class="alert alert-success alert-dismissible fade show mt-4" role="alert">
+                    <strong>Thông báo: </strong>' . $_SESSION['success'] . '
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>';
+            unset($_SESSION['success']); // Xóa thông báo sau khi hiển thị
+        }
+        if (isset($_SESSION['error']) && $_SESSION['error'] != "") {
+            echo '<div class="alert alert-danger alert-dismissible fade show mt-4" role="alert">
+                    <strong>Thông báo: </strong>' . $_SESSION['error'] . '
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>';
+            unset($_SESSION['error']); // Xóa thông báo sau khi hiển thị
+        }
+        ?>
+     
     </div>
 </div>

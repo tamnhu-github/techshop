@@ -120,7 +120,7 @@ function loadAll_donhang($iduser)
     return $listbill;
 }
 
-function loadAll_listBill($key = "", $trangthai = null, $ngaydathang = null)
+function loadAll_listBill($key = "", $trangthai = "", $ngaydathang = "")
 {
     $sql = "SELECT * FROM donhang WHERE 1";
 
@@ -130,7 +130,7 @@ function loadAll_listBill($key = "", $trangthai = null, $ngaydathang = null)
     }
 
     // Tìm kiếm theo trạng thái
-    if ($trangthai !== null) {
+    if ($trangthai !== "") {
         $sql .= " AND trangthai = " . intval($trangthai);
     }
 
@@ -226,6 +226,39 @@ function update_donhang($madonhang, $trangthai)
 }
 function delete_donhang($madonhang)
 {
-    $sql = "delete from giohang where madonhang = " . $madonhang . "; delete from donhang where madonhang = " . $madonhang;
-    pdo_execute($sql);
+    // Kiểm tra trạng thái của đơn hàng (Nếu ở trang thái 0: Đơn hàng vừa dc tạo, 4:Đơn hàng đã hủy
+    //thì mới cho phép xóa)
+    $sqlCheck = "SELECT COUNT(*) FROM donhang WHERE madonhang = ? AND (trangthai = 0 OR trangthai = 4)";
+
+    try {
+        $stmtCheck = pdo_get_connection()->prepare($sqlCheck);
+        $stmtCheck->execute([$madonhang]);
+        $result = $stmtCheck->fetchColumn();
+
+        if ($result > 0) {
+            // Xóa đơn hàng từ bảng giohang
+            $sqlDeleteGioHang = "DELETE FROM giohang WHERE madonhang = ?";
+            pdo_execute($sqlDeleteGioHang, $madonhang);
+
+            // Xóa đơn hàng từ bảng donhang
+            $sqlDeleteDonHang = "DELETE FROM donhang WHERE madonhang = ?";
+            pdo_execute($sqlDeleteDonHang, $madonhang);
+
+            return [
+                "success" => true,
+                "message" => "Xóa đơn hàng thành công!"
+            ];
+            
+        } else {
+            return [
+                "success" => false,
+                "message" => "Không thể xóa đơn hàng. Đơn hàng không tồn tại hoặc không ở trạng thái cho phép."
+            ];
+        }
+    } catch (PDOException $e) {
+        return [
+            "success" => false,
+            "message" => "Lỗi khi xóa đơn hàng: " . $e->getMessage()
+        ];
+    }
 }

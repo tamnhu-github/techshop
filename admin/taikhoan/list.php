@@ -23,6 +23,7 @@
             <div class="card-body">
                 <div class="table-responsive">
                     <table class="table table-striped table-bordered">
+                    <p>Có <strong><?= $totalItems ?></strong> tài khoản trong tổng số <strong><?= $totalPages ?></strong> trang</p>
                         <thead>
                             <tr>
                                 <th></th>
@@ -98,15 +99,13 @@
     </div>
 </div>
 <?php
-if (isset($_SESSION['thongbao'])) {
-    echo '<div class="alert alert-danger alert-dismissible fade show mt-4" role="alert">
-                                    <strong>Thông báo: </strong>' . $_SESSION['thongbao'] . '
-                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                                </div>';
-        unset($_SESSION['thongbao']);
-}
-?>
-<?php
+    if (isset($_SESSION['thongbao'])) {
+        echo '<div class="alert alert-danger alert-dismissible fade show mt-4" role="alert">
+                                        <strong>Thông báo: </strong>' . $_SESSION['thongbao'] . '
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                    </div>';
+            unset($_SESSION['thongbao']);
+    }
     if (isset($_SESSION['success']) && $_SESSION['success'] != "") {
         echo '<div class="alert alert-success alert-dismissible fade show mt-4" role="alert">
                 <strong>Thông báo: </strong>' . $_SESSION['success'] . '

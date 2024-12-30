@@ -239,7 +239,7 @@ if (isset($_GET['act'])) {
                         $_SESSION['error'] = $result['message']; 
                     }
                 } else {
-                    $_SESSION['error'] = "Không thể xóa người dùng này";
+                    $_SESSION['thongbao'] = "Không thể xóa người dùng này";
                 }
             } else {
                 $_SESSION['error'] = "ID không hợp lệ";
@@ -335,15 +335,26 @@ if (isset($_GET['act'])) {
                 $madonhang = $_GET['madonhang'];
                 $trangthai = $_GET['trangthai'];
                 update_donhang($madonhang, $trangthai);
-                $success = "Cập nhật thành công!";
+                $_SESSION['success'] = "Cập nhật thành công!";
+            }else{
+                $_SESSION['error'] = "Cập nhật thất bại";
             }
             header("Location: index.php?act=dsdh");
             break;
         case 'xoadh':
             if (isset($_GET['madonhang']) && ($_GET['madonhang']) > 0) {
-                delete_donhang(($_GET['madonhang']));
+                $result = delete_donhang(($_GET['madonhang']));
+                if ($result['success']) {
+                    $_SESSION['success'] = $result['message']; 
+                } else {
+                    $_SESSION['error'] = $result['message']; 
+                }
+            }
+            else{
+                $_SESSION['error'] = "Không tìm thấy đơn hàng";
             }
             header("Location: index.php?act=dsdh");
+            exit;
             break;
             //thong ke
         case 'thongke':

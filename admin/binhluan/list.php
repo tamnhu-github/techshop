@@ -7,6 +7,7 @@
             <div class="card-body">
                 <div class="table-responsive">
                     <table class="table table-striped table-bordered">
+                    <p>Có <strong><?= $totalItems ?></strong> bình luận trong tổng số <strong><?= $totalPages ?></strong> trang</p>
                         <thead>
                             <tr>
                                 <th></th>
