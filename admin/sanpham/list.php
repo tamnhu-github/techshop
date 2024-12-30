@@ -91,7 +91,49 @@
                 <button type="button" class="btn btn-secondary">Bỏ chọn tất cả</button>
                 <button type="button" class="btn btn-danger">Xóa các mục đã chọn</button>
                 <a href="index.php?act=addsp" class="btn btn-success float-end">Thêm mới sản phẩm</a>
+                <div class="text-center mt-3">
+                    <ul class="pagination justify-content-center">
+                        <!-- Previous button -->
+                        <li class="page-item <?= ($currentPage == 1) ? 'disabled' : '' ?>">
+                            <a class="page-link" href="<?= ($currentPage > 1) ? 'index.php?act=dssp&page=' . ($currentPage - 1) . '&key=' . htmlspecialchars($key) . '&maloai=' . htmlspecialchars($maloai) : '#' ?>">
+                                &lt;
+                            </a>
+                        </li>
+
+                        <!-- Page numbers -->
+                        <?php for ($i = $startPage; $i <= $endPage; $i++): ?>
+                            <li class="page-item <?= ($i == $currentPage) ? 'active' : '' ?>">
+                                <a class="page-link" href="index.php?act=dssp&page=<?= $i ?>&key=<?= htmlspecialchars($key) ?>&maloai=<?= htmlspecialchars($maloai) ?>">
+                                    <?= $i ?>
+                                </a>
+                            </li>
+                        <?php endfor; ?>
+
+                        <!-- Next button -->
+                        <li class="page-item <?= ($currentPage == $totalPages) ? 'disabled' : '' ?>">
+                            <a class="page-link" href="<?= ($currentPage < $totalPages) ? 'index.php?act=dssp&page=' . ($currentPage + 1) . '&key=' . htmlspecialchars($key) . '&maloai=' . htmlspecialchars($maloai) : '#' ?>">
+                                &gt;
+                            </a>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
+        <?php
+            if (isset($_SESSION['success']) && $_SESSION['success'] != "") {
+                echo '<div class="alert alert-success alert-dismissible fade show mt-4" role="alert">
+                        <strong>Thông báo: </strong>' . $_SESSION['success'] . '
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>';
+                unset($_SESSION['success']); // Xóa thông báo sau khi hiển thị
+            }
+            if (isset($_SESSION['error']) && $_SESSION['error'] != "") {
+                echo '<div class="alert alert-danger alert-dismissible fade show mt-4" role="alert">
+                        <strong>Thông báo: </strong>' . $_SESSION['error'] . '
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                      </div>';
+                unset($_SESSION['error']); // Xóa thông báo sau khi hiển thị
+            }
+        ?>
     </div>
 </div>

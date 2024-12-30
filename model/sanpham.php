@@ -5,8 +5,17 @@
     }
 
     function delete_sanpham($masanpham) {
-        $sql = "delete from sanpham where masanpham = ".$masanpham;
-        pdo_execute($sql);
+        // Kiểm tra xem masanpham có tồn tại trong bảng giohang không
+        $sqlCheck = "SELECT COUNT(*) FROM giohang WHERE masanpham = ?";
+        $result = pdo_query_value($sqlCheck, $masanpham); 
+    
+        if ($result > 0) {
+            return ["success" => false, "message" => "Không thể xóa sản phẩm đang có đơn hàng."];
+        } else {
+            $sql = "DELETE FROM sanpham WHERE masanpham = ?";
+            pdo_execute($sql, $masanpham);
+            return ["success" => true, "message" => "Xóa sản phẩm thành công!"];
+        }
     }
     function loadAll_sanpham($key="", $maloai=0) {
         $sql = "select * from sanpham where 1";

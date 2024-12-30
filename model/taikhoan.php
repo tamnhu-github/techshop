@@ -1,6 +1,11 @@
 <?php
-    function loadAll_khachhang() {
-        $sql = "select * from taikhoan order by id desc";
+    function loadAll_khachhang($key="") {
+        $sql = "select * from taikhoan where 11";
+        if($key!="") {
+            $sql.=" and tennguoidung like'%".$key."%'";
+        }
+        
+        $sql .= " order by id desc";
         $listkhachhang = pdo_query($sql);
         return $listkhachhang;
     }
@@ -51,9 +56,18 @@
                 WHERE id = ".$id;
         pdo_execute($sql);
     }
+
     function delete_khachhang($id) {
-        $sql = "delete from taikhoan where id = ".$id;
-        pdo_execute($sql);
-    }
+        // Kiểm tra xem iduser có tồn tại trong bảng giohang không
+        $sqlCheck = "SELECT COUNT(*) FROM giohang WHERE iduser = ?";
+        $result = pdo_query_value($sqlCheck, $id); 
     
+        if ($result > 0) {
+            return ["success" => false, "message" => "Không thể xóa khách hàng đang có đơn hàng."];
+        } else {
+            $sql = "DELETE FROM taikhoan WHERE id = ?";
+            pdo_execute($sql, $id);
+            return ["success" => true, "message" => "Xóa khách hàng thành công!"];
+        }
+    }
 ?>

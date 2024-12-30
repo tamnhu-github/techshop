@@ -37,7 +37,7 @@
             <div class="card-body">
                 <div class="table-responsive">
                     <table class="table table-striped table-bordered">
-                    <p>Có <strong><?= $totalItems ?></strong> đơn hàng trong tổng số <strong><?= $totalPages ?></strong> trang</p>
+                        <p>Có <strong><?= $totalItems ?></strong> đơn hàng trong tổng số <strong><?= $totalPages ?></strong> trang</p>
                         <thead>
                             <tr>
                                 <th></th>
@@ -87,31 +87,31 @@
                 <button type="button" class="btn btn-secondary">Bỏ chọn tất cả</button>
                 <button type="button" class="btn btn-danger">Xóa các mục đã chọn</button>
                 <div class="text-center mt-3">
-    <ul class="pagination justify-content-center">
-        <!-- Previous button -->
-        <li class="page-item <?= ($currentPage == 1) ? 'disabled' : '' ?>">
-            <a class="page-link" href="<?= ($currentPage > 1) ? 'index.php?act=dsdh&page=' . ($currentPage - 1) . '&key=' . htmlspecialchars($key) . '&trangthai=' . htmlspecialchars($trangthai) . '&ngaydathang=' . htmlspecialchars($ngaydathang) : '#' ?>">
-                &lt;
-            </a>
-        </li>
+                    <ul class="pagination justify-content-center">
+                        <!-- Previous button -->
+                        <li class="page-item <?= ($currentPage == 1) ? 'disabled' : '' ?>">
+                            <a class="page-link" href="<?= ($currentPage > 1) ? 'index.php?act=dsdh&page=' . ($currentPage - 1) . '&key=' . htmlspecialchars($key) . '&trangthai=' . htmlspecialchars($trangthai) . '&ngaydathang=' . htmlspecialchars($ngaydathang) : '#' ?>">
+                                &lt;
+                            </a>
+                        </li>
 
-        <!-- Page numbers -->
-        <?php for ($i = $startPage; $i <= $endPage; $i++): ?>
-            <li class="page-item <?= ($i == $currentPage) ? 'active' : '' ?>">
-                <a class="page-link" href="index.php?act=dsdh&page=<?= $i ?>&key=<?= htmlspecialchars($key) ?>&trangthai=<?= htmlspecialchars($trangthai) ?>&ngaydathang=<?= htmlspecialchars($ngaydathang) ?>">
-                    <?= $i ?>
-                </a>
-            </li>
-        <?php endfor; ?>
+                        <!-- Page numbers -->
+                        <?php for ($i = $startPage; $i <= $endPage; $i++): ?>
+                            <li class="page-item <?= ($i == $currentPage) ? 'active' : '' ?>">
+                                <a class="page-link" href="index.php?act=dsdh&page=<?= $i ?>&key=<?= htmlspecialchars($key) ?>&trangthai=<?= htmlspecialchars($trangthai) ?>&ngaydathang=<?= htmlspecialchars($ngaydathang) ?>">
+                                    <?= $i ?>
+                                </a>
+                            </li>
+                        <?php endfor; ?>
 
-        <!-- Next button -->
-        <li class="page-item <?= ($currentPage == $totalPages) ? 'disabled' : '' ?>">
-            <a class="page-link" href="<?= ($currentPage < $totalPages) ? 'index.php?act=dsdh&page=' . ($currentPage + 1) . '&key=' . htmlspecialchars($key) . '&trangthai=' . htmlspecialchars($trangthai) . '&ngaydathang=' . htmlspecialchars($ngaydathang) : '#' ?>">
-                &gt;
-            </a>
-        </li>
-    </ul>
-</div>
+                        <!-- Next button -->
+                        <li class="page-item <?= ($currentPage == $totalPages) ? 'disabled' : '' ?>">
+                            <a class="page-link" href="<?= ($currentPage < $totalPages) ? 'index.php?act=dsdh&page=' . ($currentPage + 1) . '&key=' . htmlspecialchars($key) . '&trangthai=' . htmlspecialchars($trangthai) . '&ngaydathang=' . htmlspecialchars($ngaydathang) : '#' ?>">
+                                &gt;
+                            </a>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>

@@ -1,5 +1,6 @@
 <!-- layout -->
 <?php
+session_start();
 include "../model/pdo.php";
 include "../model/danhmuc.php";
 include "../model/sanpham.php";
@@ -25,15 +26,33 @@ if (isset($_GET['act'])) {
             include "danhmuc/add.php";
             break;
         case 'dsdm':
+            //Phân trang
+            $pageParam = isset($_GET['page']) ? $_GET['page'] : null;
+            $currentPage = ($pageParam === null || $pageParam === '') ? 1 : (int)$pageParam;
+            $size = 10;
+
             $listdanhmuc = loadAll_danhmuc();
+            $totalItems = count($listdanhmuc);
+            $totalPages = (int) ceil($totalItems / $size);
+
+            $startIndex = ($currentPage - 1) * $size;
+            $listdanhmuc = array_slice($listdanhmuc, $startIndex, $size);
+
+            $maxVisiblePages = 6;
+            $startPage = max(1, $currentPage - 1);
+            $endPage = min($totalPages, $startPage + $maxVisiblePages - 1);
+
+            if ($endPage - $startPage < $maxVisiblePages - 1) {
+                $startPage = max(1, $endPage - $maxVisiblePages + 1);
+            }
+            
             include "danhmuc/list.php";
             break;
         case 'xoadm':
             if (isset($_GET['maloai']) && ($_GET['maloai']) > 0) {
                 delete_danhmuc(($_GET['maloai']));
             }
-            $listdanhmuc = loadAll_danhmuc();
-            include "danhmuc/list.php";
+            header("Location: index.php?act=dsdm");
             break;
         case 'suadm':
             if (isset($_GET['maloai']) && ($_GET['maloai']) > 0) {
@@ -49,10 +68,10 @@ if (isset($_GET['act'])) {
                 update_danhmuc($maloai, $tenloai);
                 $thongbao = "Cập nhật thành công!";
             }
-            $listdanhmuc = loadAll_danhmuc();
-            include "danhmuc/list.php";
+            // $listdanhmuc = loadAll_danhmuc();
+            // include "danhmuc/list.php";
+            header("Location: index.php?act=dsdm");
             break;
-
 
             //sanpham
         case 'addsp':
@@ -88,23 +107,49 @@ if (isset($_GET['act'])) {
                 $key = "";
                 $maloai = 0;
             }
+
+            $pageParam = isset($_GET['page']) ? $_GET['page'] : null;
+            $currentPage = ($pageParam === null || $pageParam === '') ? 1 : (int)$pageParam;
+            $size = 10;
             $listdanhmuc = loadAll_danhmuc();
             $listsanpham = loadAll_sanpham($key, $maloai);
+            $totalItems = count($listsanpham);
+            $totalPages = (int) ceil($totalItems / $size);
+            $startIndex = ($currentPage - 1) * $size;
+            $listsanpham = array_slice($listsanpham, $startIndex, $size);
+
+            $maxVisiblePages = 6;
+            $startPage = max(1, $currentPage - 1);
+            $endPage = min($totalPages, $startPage + $maxVisiblePages - 1);
+
+            if ($endPage - $startPage < $maxVisiblePages - 1) {
+                $startPage = max(1, $endPage - $maxVisiblePages + 1);
+            }
+
             include "sanpham/list.php";
             break;
         case 'xoasp':
             if (isset($_GET['masanpham']) && ($_GET['masanpham']) > 0) {
-                delete_sanpham(($_GET['masanpham']));
+                $result = delete_sanpham($_GET['masanpham']);
+                
+                //Lưu kết quả vào session để hiển thị thông báo cho View
+                if ($result['success']) {
+                    $_SESSION['success'] = $result['message']; // Thông báo thành công
+                } else {
+                    $_SESSION['error'] = $result['message']; // Thông báo thất bại
+                }
+            } else {
+                $_SESSION['error'] = "Mã sản phẩm không hợp lệ."; // Thông báo lỗi
             }
-            $listdanhmuc = loadAll_danhmuc();
-            $listsanpham = loadAll_sanpham("", 0);
-            include "sanpham/list.php";
+
+            header("Location: index.php?act=dssp");
+            exit; 
             break;
         case 'suasp':
             if (isset($_GET['masanpham']) && ($_GET['masanpham']) > 0) {
                 $sanpham = loadOne_sanpham(($_GET['masanpham']));
             }
-            $listdanhmuc = loadAll_danhmuc();
+
             include "sanpham/update.php";
             break;
         case 'updatesp':
@@ -121,21 +166,43 @@ if (isset($_GET['act'])) {
                 }
                 $target_file = $target_dir . basename($_FILES["anh"]["name"]);
                 if (move_uploaded_file($_FILES["anh"]["tmp_name"], $target_file)) {
-                    //echo "Thanh cong";
+                    $_SESSION['success'] = "Cập nhật sản phẩm thành công!";
                 } else {
-                    //echo "That bai";
+                    $_SESSION['error'] = "Cập nhật sản phẩm thất bại";
                 }
                 update_sanpham($masanpham, $tensanpham, $gia, $mota, $anh);
                 $thongbao = "Cập nhật thành công!";
             }
-            $listdanhmuc = loadAll_danhmuc();
-            $listsanpham = loadAll_sanpham("", 0);
-            include "sanpham/list.php";
+            header("Location: index.php?act=dssp");
             break;
 
             //khachhang
         case 'dskh':
-            $listkhachhang = loadAll_khachhang();
+            if (isset($_POST['btnTim']) && ($_POST['btnTim'])) {
+                $key = $_POST['key'];
+            } else {
+                $key = "";
+            }
+
+            $pageParam = isset($_GET['page']) ? $_GET['page'] : null;
+            $currentPage = ($pageParam === null || $pageParam === '') ? 1 : (int)$pageParam;
+            $size = 10;
+
+            $listkhachhang = loadAll_khachhang($key);
+            $totalItems = count($listkhachhang);
+            $totalPages = (int) ceil($totalItems / $size);
+
+            $startIndex = ($currentPage - 1) * $size;
+            $listkhachhang = array_slice($listkhachhang, $startIndex, $size);
+
+            $maxVisiblePages = 6;
+            $startPage = max(1, $currentPage - 1);
+            $endPage = min($totalPages, $startPage + $maxVisiblePages - 1);
+
+            if ($endPage - $startPage < $maxVisiblePages - 1) {
+                $startPage = max(1, $endPage - $maxVisiblePages + 1);
+            }
+
             include "taikhoan/list.php";
             break;
         case 'suakh':
@@ -154,29 +221,58 @@ if (isset($_GET['act'])) {
                 $vaitro = $_POST['vaitro'];
                 $sodienthoai = $_POST['sodienthoai'];
                 update_taikhoanAdmin($id, $tennguoidung, $email, $sodienthoai, $diachi, $vaitro);
-                $success = "Cập nhật thành công!";
+                $_SESSION['success'] = "Cập nhật thành công!";
             }
-            $listkhachhang = loadAll_khachhang();
-            include "taikhoan/list.php";
+            header("Location: index.php?act=dskh");
+            exit;
             break;
 
         case 'xoakh':
             if (isset($_GET['id']) && ($_GET['id']) > 0) {
                 if (isset($_GET['vaitro']) && ($_GET['vaitro']) == 0) {
-                    delete_khachhang(($_GET['id']));
+                    $result = delete_khachhang($_GET['id']);
+        
+                    //Lưu kết quả vào session để hiển thị thông báo cho View
+                    if ($result['success']) {
+                        $_SESSION['success'] = $result['message']; 
+                    } else {
+                        $_SESSION['error'] = $result['message']; 
+                    }
                 } else {
-                    $thongbao = "Không thể xóa người dùng này";
+                    $_SESSION['error'] = "Không thể xóa người dùng này";
                 }
-            }
-            $listkhachhang = loadAll_khachhang();
-            include "taikhoan/list.php";
+            } else {
+                $_SESSION['error'] = "ID không hợp lệ";
+            }        
+            header("Location: index.php?act=dskh");
+            exit; 
             break;
 
             //binhluan
         case 'dsbl':
+            //Phân trang
+            $pageParam = isset($_GET['page']) ? $_GET['page'] : null;
+            $currentPage = ($pageParam === null || $pageParam === '') ? 1 : (int)$pageParam;
+            $size = 10;
+
+            $listbinhluan = loadAll();
+            $totalItems = count($listbinhluan);
+            $totalPages = (int) ceil($totalItems / $size);
+
+            $startIndex = ($currentPage - 1) * $size;
+            $listbinhluan = array_slice($listbinhluan, $startIndex, $size);
+
+            $maxVisiblePages = 6;
+            $startPage = max(1, $currentPage - 1);
+            $endPage = min($totalPages, $startPage + $maxVisiblePages - 1);
+
+            if ($endPage - $startPage < $maxVisiblePages - 1) {
+                $startPage = max(1, $endPage - $maxVisiblePages + 1);
+            }
+
             $listkhachhang = loadAll_khachhang();
             $listsanpham = loadAll_sanpham("", 0);
-            $listbinhluan = loadAll();
+            
             include "binhluan/list.php";
             break;
 
@@ -184,10 +280,11 @@ if (isset($_GET['act'])) {
             if (isset($_GET['idmsg']) && ($_GET['idmsg']) > 0) {
                 delete_binhluan(($_GET['idmsg']));
             }
-            $listbinhluan = loadAll();
-            $listkhachhang = loadAll_khachhang();
-            $listsanpham = loadAll_sanpham("", 0);
-            include "binhluan/list.php";
+            // $listbinhluan = loadAll();
+            // $listkhachhang = loadAll_khachhang();
+            // $listsanpham = loadAll_sanpham("", 0);
+            // include "binhluan/list.php";
+            header("Location: index.php?act=dsbl");
             break;
 
             //đơn hàng
@@ -240,53 +337,13 @@ if (isset($_GET['act'])) {
                 update_donhang($madonhang, $trangthai);
                 $success = "Cập nhật thành công!";
             }
-            $pageParam = isset($_GET['page']) ? $_GET['page'] : null;
-            $currentPage = ($pageParam === null || $pageParam === '') ? 1 : (int)$pageParam;
-            $size = 10;
-
-            // Lấy danh sách đơn hàng
-            $listdonhang = loadAll_listBill("");
-            $totalItems = count($listdonhang);
-            $totalPages = (int) ceil($totalItems / $size);
-
-            $startIndex = ($currentPage - 1) * $size;
-            $listdonhang = array_slice($listdonhang, $startIndex, $size);
-
-            $maxVisiblePages = 6;
-            $startPage = max(1, $currentPage - 1);
-            $endPage = min($totalPages, $startPage + $maxVisiblePages - 1);
-
-            if ($endPage - $startPage < $maxVisiblePages - 1) {
-                $startPage = max(1, $endPage - $maxVisiblePages + 1);
-            }
-            $listkhachhang = loadAll_khachhang();
-            include "donhang/list.php";
+            header("Location: index.php?act=dsdh");
             break;
         case 'xoadh':
             if (isset($_GET['madonhang']) && ($_GET['madonhang']) > 0) {
                 delete_donhang(($_GET['madonhang']));
             }
-            $pageParam = isset($_GET['page']) ? $_GET['page'] : null;
-            $currentPage = ($pageParam === null || $pageParam === '') ? 1 : (int)$pageParam;
-            $size = 10;
-
-            // Lấy danh sách đơn hàng
-            $listdonhang = loadAll_listBill("");
-            $totalItems = count($listdonhang);
-            $totalPages = (int) ceil($totalItems / $size);
-
-            $startIndex = ($currentPage - 1) * $size;
-            $listdonhang = array_slice($listdonhang, $startIndex, $size);
-
-            $maxVisiblePages = 6;
-            $startPage = max(1, $currentPage - 1);
-            $endPage = min($totalPages, $startPage + $maxVisiblePages - 1);
-
-            if ($endPage - $startPage < $maxVisiblePages - 1) {
-                $startPage = max(1, $endPage - $maxVisiblePages + 1);
-            }
-            $listkhachhang = loadAll_khachhang();
-            include "donhang/list.php";
+            header("Location: index.php?act=dsdh");
             break;
             //thong ke
         case 'thongke':

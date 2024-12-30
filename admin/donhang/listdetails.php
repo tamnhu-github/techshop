@@ -54,7 +54,7 @@
                     </div>
                     <div class="form-group mb-3">
                         <label for="trangthai" class="form-label fw-bold">Trạng thái</label>
-                        <select id="trangthai" class="form-select" name="trangthai">
+                        <select id="trangthai" class="form-select" name="trangthai" style="text-decoration: none; color: black;">
                             <option value="0" <?= $trangthai == 0 ? 'selected' : '' ?>>Chờ xác nhận</option>
                             <option value="1" <?= $trangthai == 1 ? 'selected' : '' ?>>Đang xử lý</option>
                             <option value="2" <?= $trangthai == 2 ? 'selected' : '' ?>>Đang giao hàng</option>
